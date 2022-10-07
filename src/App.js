@@ -6,6 +6,7 @@ import AddRecommendation from "./pages/addRecommendation";
 import AllRecommendation from "./pages/allRecommendations";
 import AdminControl from "./pages/adminControl";
 import StatusRecommendation from "./pages/statusRecommendations";
+import AddAccount from "./pages/addAccount";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           path="/yourRecommendation"
           element={<StatusRecommendation />}
         ></Route>
+        <Route path="/addAccount" element={<AddAccount />}></Route>
       </Routes>
     </BrowserRouter>
   );
