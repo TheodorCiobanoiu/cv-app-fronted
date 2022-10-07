@@ -26,6 +26,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
+import Footer from "./footer";
 
 const settings = ["Profile", "Logout"];
 //const today = Date.getFullYear() + "-" + Date.getMonth() + "-" + Date.getDate();
@@ -253,6 +254,7 @@ const AddRecommendation = () => {
           </Button>
         </Box>
       </div>
+      <Footer />
     </div>
   );
 };

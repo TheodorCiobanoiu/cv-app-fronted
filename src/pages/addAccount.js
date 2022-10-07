@@ -25,15 +25,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
-import { flexbox } from "@mui/system";
 import Footer from "./footer";
 
 const settings = ["Profile", "Logout"];
@@ -46,18 +38,7 @@ const defaultValues = {
   favoriteNumber: 0,
 };
 
-function createData(name, status) {
-  return { name, status };
-}
-
-const rows = [
-  createData("Mihai", "Acceptat"),
-  createData("Cristi", "Picat"),
-  createData("Maria", "In asteptare"),
-  createData("Tudor", "Acceptat"),
-];
-
-const StatusRecommendations = () => {
+const AddAccount = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -171,73 +152,97 @@ const StatusRecommendations = () => {
       </AppBar>
       <br />
       <div>
-        <Typography sx={{ fontWeight: "bold", background: "#cfe8fc" }}>
-          Your Recommendations
-        </Typography>
-      </div>
-      <Box sx={{ mt: 2, ml: 45 }}>
-        <div>
-          <FormControl>
-            {/*  <InputLabel id="demo-simple-select-autowidth-label">
-              Filtreaza
-            </InputLabel> */}
-            <Select
-              labelId="demo-simple-select-autowidth-label"
-              id="demo-simple-select-autowidth"
-              autoWidth
-              label="filtreaza"
-            >
-              <MenuItem value={10}>In functie de status</MenuItem>
-              <MenuItem value={21}>Dupa nume</MenuItem>
-              <MenuItem value={22}>Dupa data</MenuItem>
-            </Select>
-          </FormControl>
-        </div>
-        <div>
-          <Box
-            mt={4}
-            sx={{
-              width: 300,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <TableContainer component={Paper}>
-              <Table
-                sx={{ minWidth: 300 }}
-                size="small"
-                aria-label="a dense table"
+        <Container maxWidth="sm" fixed>
+          <Box sx={{ bgcolor: "#cfe8fc" }}>
+            <br />
+            <form onSubmit={handleSubmit}>
+              <Grid
+                container
+                alignItems="center"
+                justify="center"
+                direction="column"
               >
-                <TableHead>
-                  <TableRow>
-                    <TableCell sx={{ fontWeight: "bold" }}>Name</TableCell>
-                    <TableCell sx={{ fontWeight: "bold" }} align="center">
-                      Status
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <TableRow
-                      key={row.name}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="center">{row.status}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                <Grid item>
+                  <TextField
+                    id="name-input"
+                    name="prenume"
+                    label="First Name: "
+                    type="text"
+                    value={formValues.prenume}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Grid>
+                <br />
+                <Grid item>
+                  <TextField
+                    id="name-input"
+                    name="nume"
+                    label="Last name: "
+                    type="text"
+                    value={formValues.nume}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Grid>
+                <br />
+                <Grid item>
+                  <TextField
+                    id="username"
+                    name="username"
+                    label="Username: "
+                    type="text"
+                    value={formValues.username}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Grid>
+                <br />
+                <Grid item>
+                  <TextField
+                    id="email"
+                    name="email"
+                    label="Email"
+                    type="email"
+                    value={formValues.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Grid>
+                <br />
+                <Grid item>
+                  <TextField
+                    id="password"
+                    required
+                    label="Password: "
+                    name="password"
+                    type="password"
+                    value={formValues.username}
+                    onChange={handleInputChange}
+                  />
+                </Grid>
+                <br />
+                <Grid item>
+                  <TextField
+                    id="address"
+                    label="Address: "
+                    name="address"
+                    type="text"
+                    value={formValues.username}
+                    onChange={handleInputChange}
+                  />
+                </Grid>
+                <br />
+                <Button variant="contained" color="primary" type="submit">
+                  Create
+                </Button>
+              </Grid>
+              <br />
+            </form>
           </Box>
-        </div>
-      </Box>
-
+        </Container>{" "}
+      </div>
       <br />
-
       <div>
         <Box
           m={1}
@@ -255,10 +260,8 @@ const StatusRecommendations = () => {
           </Button>
         </Box>
       </div>
-      <Box sx={{ mt: 10, mb: 4 }}>
-        <Footer />
-      </Box>
+      <Footer />
     </div>
   );
 };
-export default StatusRecommendations;
+export default AddAccount;

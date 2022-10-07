@@ -13,7 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Stack from "@mui/material/Stack";
-
+import Footer from "./footer";
+import { AddBox } from "@mui/icons-material";
 const settings = ["Profile", "Logout"];
 const Content = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -125,6 +126,9 @@ const Content = () => {
           </Stack>
         </Box>
       </div>
+      <Box sx={{ mt: 30, mb: 4 }}>
+        <Footer />
+      </Box>
     </div>
   );
 };

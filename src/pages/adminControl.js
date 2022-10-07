@@ -32,6 +32,8 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
+import Footer from "./footer";
+import Stack from "@mui/material/Stack";
 
 const settings = ["Profile", "Logout"];
 //const today = Date.getFullYear() + "-" + Date.getMonth() + "-" + Date.getDate();
@@ -165,41 +167,18 @@ export default function Login() {
           </Toolbar>
         </Container>
       </AppBar>
-      <div align="center">
-        <p>Informatii diverse...</p>
-        <Button variant="outlined" onClick={handleClickOpen} id="btnLogIn">
-          Open login form
-        </Button>
-        <Dialog open={open} onClose={handleClose}>
-          <DialogTitle align="center">Login</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Pentru logare trebuie sa introduceti username si parola.
-            </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="username"
-              label="Username"
-              type="username"
-              fullWidth
-              variant="standard"
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="password"
-              label="Password"
-              type="password"
-              fullWidth
-              variant="standard"
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleClose}>Submit</Button>
-          </DialogActions>
-        </Dialog>
+      <br />
+      <div>
+        <Box sx={{ width: "30%", margin: "auto" }}>
+          <Stack spacing={2}>
+            <Button variant="contained" href="/addAccount">
+              Register account
+            </Button>
+            <Button variant="contained" href="/content">
+              Delete account
+            </Button>
+          </Stack>
+        </Box>
       </div>
       <br />
       <br />
@@ -220,6 +199,9 @@ export default function Login() {
           </Button>
         </Box>
       </div>
+      <Box sx={{ mt: 35, mb: 4 }}>
+        <Footer />
+      </Box>
     </div>
   );
 }
