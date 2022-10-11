@@ -46,7 +46,7 @@ export default function SignOut() {
                 <CssBaseline />
 
                 <Typography component="h1" variant="h5">
-                    Hello Bitches, our site is cool trust me
+                    Hello, our site is cool trust me
                 </Typography>
 
                 <Button

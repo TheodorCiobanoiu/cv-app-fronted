@@ -4,11 +4,13 @@ import axios from "axios";
 
 
 const ShowQuestion = () => {
-    const [questions, getQuestions] = useState([]);
+    const [questions, setQuestions] = useState([]);
     const fetchData = () => {
-        axios.get("http://localhost:8082/question/all").then(response => {
-            getQuestions(response.data)
-        })
+        axios.get("http://localhost:8082/question/all", {crossDomain: true}).then(response => {
+            setQuestions(response.data)
+            console.log(response.data)
+        }).catch(err => console.log(err))
+
     }
 
     useEffect(() => {
@@ -20,7 +22,7 @@ const ShowQuestion = () => {
             {questions.length > 0 && (
                 <ul>
                     {questions.map(question => (
-                        <li key={question.id}>{question.id}</li>
+                        <li key={question.id}>{question.question_body}</li>
                     ))}
                 </ul>
             )}

@@ -35,22 +35,6 @@ const theme = createTheme();
 
 export default function SignIn() {
 
-  const [toDoData, setData] = useState([]);
-  const {register, handleSu} = useForm();
-
-  useEffect(() => {
-    syncWithServer();
-  }, []);
-
-  const syncWithServer = () =>{
-    fetch('http://localhost:8082/')
-        .then(response => response.json())
-        .then(result => {
-          setData(result);
-        });
-
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

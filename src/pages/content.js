@@ -24,9 +24,14 @@ const Content = () => {
       <Header />
       <br />
       <div>
-        <Box sx={{ width: "30%", margin: "auto" }}>
+        <Box sx={{ width: "30%", margin: "auto", color: "#b34454"}}>
           <Stack spacing={2}>
-            <Button variant="contained" href="/completeRecommendation">
+            <Button style={{
+                borderRadius: 35,
+                backgroundColor: "#7f0e2c",
+                padding: "18px 36px",
+                fontSize: "18px"
+            }} variant="contained" href="/completeRecommendation">
               Add recommendation
             </Button>
             <Button variant="contained" href="/yourRecommendation">
