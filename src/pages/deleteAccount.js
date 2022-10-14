@@ -18,7 +18,7 @@ const defaultValues = {
   favoriteNumber: 0,
 };
 
-const AddAccount = () => {
+const DeleteAccount = () => {
   const [formValues, setFormValues] = useState(defaultValues);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -28,11 +28,11 @@ const AddAccount = () => {
     });
   };
   /*const handleSliderChange = (name) => (e, value) => {
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };*/
+        setFormValues({
+            ...formValues,
+            [name]: value,
+        });
+    };*/
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formValues);
@@ -57,30 +57,6 @@ const AddAccount = () => {
               >
                 <Grid item>
                   <TextField
-                    id="name-input"
-                    name="prenume"
-                    label="First Name: "
-                    type="text"
-                    value={formValues.prenume}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </Grid>
-                <br />
-                <Grid item>
-                  <TextField
-                    id="name-input"
-                    name="nume"
-                    label="Last name: "
-                    type="text"
-                    value={formValues.nume}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </Grid>
-                <br />
-                <Grid item>
-                  <TextField
                     id="username"
                     name="username"
                     label="Username: "
@@ -93,41 +69,19 @@ const AddAccount = () => {
                 <br />
                 <Grid item>
                   <TextField
-                    id="email"
-                    name="email"
-                    label="Email"
-                    type="email"
-                    value={formValues.email}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </Grid>
-                <br />
-                <Grid item>
-                  <TextField
                     id="password"
-                    required
-                    label="Password: "
+                    label="Admin Password: "
                     name="password"
                     type="password"
                     value={formValues.username}
                     onChange={handleInputChange}
+                    required
                   />
                 </Grid>
                 <br />
-                <Grid item>
-                  <TextField
-                    id="address"
-                    label="Address: "
-                    name="address"
-                    type="text"
-                    value={formValues.username}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-                <br />
+
                 <Button variant="contained" color="primary" type="submit">
-                  Create
+                  Delete
                 </Button>
               </Grid>
               <br />
@@ -157,4 +111,4 @@ const AddAccount = () => {
     </div>
   );
 };
-export default AddAccount;
+export default DeleteAccount;

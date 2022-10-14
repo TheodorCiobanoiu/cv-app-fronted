@@ -7,8 +7,6 @@ import TextField from "@material-ui/core/TextField";
 import { useNavigate } from "react-router-dom";
 import Footer from "./footer";
 import Header from "./header";
-
-//const settings = ["Profile", "Logout"];
 //const today = Date.getFullYear() + "-" + Date.getMonth() + "-" + Date.getDate();
 const defaultValues = {
   name: "",
@@ -18,7 +16,7 @@ const defaultValues = {
   favoriteNumber: 0,
 };
 
-const AddAccount = () => {
+const AddQuestion = () => {
   const [formValues, setFormValues] = useState(defaultValues);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,12 +25,12 @@ const AddAccount = () => {
       [name]: value,
     });
   };
-  /*const handleSliderChange = (name) => (e, value) => {
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };*/
+  /*  const handleSliderChange = (name) => (e, value) => {
+        setFormValues({
+            ...formValues,
+            [name]: value,
+        });
+    };*/
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formValues);
@@ -57,11 +55,11 @@ const AddAccount = () => {
               >
                 <Grid item>
                   <TextField
-                    id="name-input"
-                    name="prenume"
-                    label="First Name: "
+                    id="question-input"
+                    name="intrebare"
+                    label="Question: "
                     type="text"
-                    value={formValues.prenume}
+                    value={formValues.intrebare}
                     onChange={handleInputChange}
                     required
                   />
@@ -69,11 +67,11 @@ const AddAccount = () => {
                 <br />
                 <Grid item>
                   <TextField
-                    id="name-input"
-                    name="nume"
-                    label="Last name: "
+                    id="type-input"
+                    name="tip"
+                    label="Type: "
                     type="text"
-                    value={formValues.nume}
+                    value={formValues.tip}
                     onChange={handleInputChange}
                     required
                   />
@@ -81,35 +79,10 @@ const AddAccount = () => {
                 <br />
                 <Grid item>
                   <TextField
-                    id="username"
-                    name="username"
-                    label="Username: "
+                    id="answer-input"
+                    name="answer1"
+                    label="Possible answer: "
                     type="text"
-                    value={formValues.username}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </Grid>
-                <br />
-                <Grid item>
-                  <TextField
-                    id="email"
-                    name="email"
-                    label="Email"
-                    type="email"
-                    value={formValues.email}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </Grid>
-                <br />
-                <Grid item>
-                  <TextField
-                    id="password"
-                    required
-                    label="Password: "
-                    name="password"
-                    type="password"
                     value={formValues.username}
                     onChange={handleInputChange}
                   />
@@ -117,9 +90,31 @@ const AddAccount = () => {
                 <br />
                 <Grid item>
                   <TextField
-                    id="address"
-                    label="Address: "
-                    name="address"
+                    id="answer-input"
+                    name="answer1"
+                    label="Possible answer: "
+                    type="text"
+                    value={formValues.username}
+                    onChange={handleInputChange}
+                  />
+                </Grid>
+                <br />
+                <Grid item>
+                  <TextField
+                    id="answer-input"
+                    name="answer1"
+                    label="Possible answer: "
+                    type="text"
+                    value={formValues.username}
+                    onChange={handleInputChange}
+                  />
+                </Grid>
+                <br />
+                <Grid item>
+                  <TextField
+                    id="answer-input"
+                    name="answer1"
+                    label="Possible answer: "
                     type="text"
                     value={formValues.username}
                     onChange={handleInputChange}
@@ -127,7 +122,7 @@ const AddAccount = () => {
                 </Grid>
                 <br />
                 <Button variant="contained" color="primary" type="submit">
-                  Create
+                  Add
                 </Button>
               </Grid>
               <br />
@@ -157,4 +152,4 @@ const AddAccount = () => {
     </div>
   );
 };
-export default AddAccount;
+export default AddQuestion;
