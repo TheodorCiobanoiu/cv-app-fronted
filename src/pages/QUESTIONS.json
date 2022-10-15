@@ -1,0 +1,4 @@
+[{"id":1, "question_body":"What kind of relationship do you have with this person?", "type":2,  "question_answer_id":1, "possible_answer1": "Relative", "possible_answer2":"Friend", "possible_answer3":"(Ex-)Classmate", "possible_answer4":"Other"},
+{"id":2, "question_body":"Why do you think this person fits our criteria?", "type":1,  "question_answer_id":1, "possible_answer1": null, "possible_answer2":null, "possible_answer3":null, "possible_answer4":null},
+{"id":3, "question_body":"Could you work directly with this person if you had to?", "type":2,  "question_answer_id":1, "possible_answer1": "Yes", "possible_answer2":"No", "possible_answer3":null, "possible_answer4":null},
+{"id":4, "question_body":"Why does this person want to work for us?", "type":3, "question_answer_id":1, "possible_answer1": "Salary", "possible_answer2":"Environment", "possible_answer3":"Company popularity", "possible_answer4":"Other"}]

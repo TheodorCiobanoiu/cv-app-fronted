@@ -1,36 +1,22 @@
-import React, { useEffect, useState } from "react";
-import AppBar from "@mui/material/AppBar";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import Radio from "@material-ui/core/Radio";
-import Select from "@material-ui/core/Select";
-import Slider from "@material-ui/core/Slider";
 import { InputLabel } from "@material-ui/core";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import { Link, Routes, Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "./footer";
-import Header from "./header"
-import axios from "axios"
-import ShowQuestions from "./components/showQuestion"
-
+import Header from "./header";
+import ShowQuestions from "./components/showQuestion";
+import ParticlesBackground from "../components/ParticlesBackground";
+import {default as questions} from './QUESTIONS.json'
+import {Divider, List, ListItem} from "@mui/material";
 //const today = Date.getFullYear() + "-" + Date.getMonth() + "-" + Date.getDate();
 const defaultValues = {
   name: "",
@@ -41,9 +27,6 @@ const defaultValues = {
 };
 
 const AddRecommendation = () => {
-
-
-
   const [formValues, setFormValues] = useState(defaultValues);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -52,15 +35,21 @@ const AddRecommendation = () => {
       [name]: value,
     });
   };
-  const handleSliderChange = (name) => (e, value) => {
+  /*const handleSliderChange = (name) => (e, value) => {
     setFormValues({
       ...formValues,
       [name]: value,
     });
-  };
+  };*/
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formValues);
+  };
+
+  const [value, setValue] = React.useState('Meoooow');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
   };
 
   const navigate = useNavigate();
@@ -69,15 +58,16 @@ const AddRecommendation = () => {
     <div>
       <Header />
       <br />
+      <ParticlesBackground />
       <div>
         <Container maxWidth="sm" fixed>
-          <Box sx={{ bgcolor: "#cfe8fc" }}>
+          <Box sx={{ bgcolor: "#403bbc", opacity: 0.5}}>
             <form onSubmit={handleSubmit}>
               <FormLabel>Recommendation Form</FormLabel>
               <Grid
                 container
                 alignItems="center"
-                justify="center"
+                justifyContent="center"
                 direction="column"
               >
                 <Grid item>
@@ -102,29 +92,47 @@ const AddRecommendation = () => {
                   />
                 </Grid>
                 <br />
-                <Grid item>
-                  <Card sx={{ maxWidth: 400 }}>
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
 
+                <div>
+                  {questions.map((question,key) =>
+                      {
+                        return(
+                            <Grid item>
+                              <Card sx={{ maxWidth: 400}} >
+                              <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                {question.question_body}
+                                </Typography>
+                                {(question.type === 1 ) &&
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                          '& .MuiTextField-root': { m: 1, width: '40ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <TextField
+                                            id="filled-multiline-flexible"
+                                            label="Write your answer below"
+                                            value={value}
+                                            onChange={handleChange}
+                                            variant="filled"
+                                        />
+                                    </Box>}
+                                {(question.type === 2 ) &&
+                                    <Typography> bow </Typography>}
+                                {(question.type === 3 ) &&
+                                    <Typography> pock </Typography>}
+                              </CardContent>
+                              </Card>
+                              <br />
+                            </Grid>
+                        )
+                      }
+                  )}
+                </div>
 
-                        <ShowQuestions />
-
-
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles,
-                        with over 6,000 species, ranging across all continents
-                        except Antarctica
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button size="small">Share</Button>
-                      <Button size="small">Learn More</Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-                <br />
                 <Grid item>
                   <Card sx={{ maxWidth: 400 }}>
                     <CardContent>
@@ -143,6 +151,9 @@ const AddRecommendation = () => {
                     </CardActions>
                   </Card>
                 </Grid>
+
+
+
                 <br />
                 <Button variant="contained" component="label">
                   Upload CV

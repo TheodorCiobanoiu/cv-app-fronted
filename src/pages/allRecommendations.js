@@ -1,93 +1,101 @@
-import React, { useState } from "react";
-import AppBar from "@mui/material/AppBar";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import Footer from "./footer";
+import Header from "./header";
+import ParticlesBackground from "../components/ParticlesBackground";
+import {Divider, List, ListItem, PaginationItem} from "@mui/material";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import {default as data} from './MOCK_DATA.json'
+import React, {Component, useState} from 'react';
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import Radio from "@material-ui/core/Radio";
-import Select from "@material-ui/core/Select";
-import Slider from "@material-ui/core/Slider";
-import { InputLabel } from "@material-ui/core";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import { Link, Routes, Route, useNavigate } from "react-router-dom";
-import Header from "./header"
-import Footer from "./footer"
+import Typography from "@mui/material/Typography";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
+import usePagination from "./pagination";
+import { makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles(() => ({
+    ul: {
+        "& .MuiPaginationItem-root": {
+            color: "white"
+        }
+    }
+}));
+export default function StatusRecommendations() {
 
-const settings = ["Profile", "Logout"];
-//const today = Date.getFullYear() + "-" + Date.getMonth() + "-" + Date.getDate();
-const defaultValues = {
-  name: "",
-  date: "10/04/2022",
-  gender: "",
-  os: "",
-  favoriteNumber: 0,
-};
+    let [spage, setsPage] = useState(1);
+    const PER_PAGE = 10;
 
-const AllRecommendations = () => {
+    const count = Math.ceil(data.length / PER_PAGE);
+    const _DATA = usePagination(data, PER_PAGE);
 
-  const [formValues, setFormValues] = useState(defaultValues);
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-  const handleSliderChange = (name) => (e, value) => {
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(formValues);
-  };
+    const handleChange = (e, p) => {
+        setsPage(p);
+        _DATA.jump(p);
+    };
 
-  const navigate = useNavigate();
+    const classes=useStyles();
+    return(
 
-  return (
-    <div>
-     <Header />
-      <br />
-      <br />
-      <div>
-        <Box
-          m={1}
-          display="flex"
-          justifyContent="flex-end"
-          alignItems="flex-end"
-        >
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ height: 40 }}
-            onClick={() => navigate(-1)}
-          >
-            Go back
-          </Button>
-        </Box>
-      </div>
-        <Box sx={{ mt: 30, mb: 4 }}>
+        <Box p="5">
+            <Header/>
+            <ParticlesBackground/>
+            <Pagination
+                classes={{ ul: classes.ul }}
+                renderItem={(item) => (
+                    <PaginationItem
+                        components={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+                        {...item}
+                    />)}
+                count={count}
+                color="primary"
+                size="large"
+                page={spage}
+                variant="outlined"
+                shape="rounded"
+                defaultPage={1}
+                showFirstButton
+                showLastButton
+                onChange={handleChange}
+            />
+
+            <Box color="white">
+                <List p="10" pt="3" spacing={2} color>
+                    {_DATA.currentData().map(v => {
+                        return (
+                            <ListItem key={v.id} listStyleType="disc">
+                                <span>{v.sku}</span>{" "}
+                                <Divider display="inline" orientation="vertical" />
+                                <span> {v.category_type}</span>{" "}
+                                <Divider display="inline" orientation="vertical" />
+                                <span>
+              </span>
+                            </ListItem>
+                        );
+                    })}
+                </List>
+            </Box>
+
+            <Pagination
+                classes={{ ul: classes.ul }}
+                renderItem={(item) => (
+                    <PaginationItem
+                        components={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+                        {...item}
+                    />)}
+                count={count}
+                color="primary"
+                size="large"
+                page={spage}
+                variant="outlined"
+                shape="rounded"
+                defaultPage={1}
+                showFirstButton
+                showLastButton
+                onChange={handleChange}
+            />
             <Footer />
         </Box>
-    </div>
-  );
-};
-export default AllRecommendations;
+    );
+}
