@@ -23,6 +23,9 @@ import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
 import Footer from "./footer";
 import ParticlesBackground from "../components/ParticlesBackground";
+import Header from "./header";
+import { Label } from "@mui/icons-material";
+
 const settings = ["Profile", "Logout"];
 
 function createData(name, status) {
@@ -51,88 +54,21 @@ const StatusRecommendations = () => {
 
   return (
     <div>
+      <Header />
       <ParticlesBackground />
-      <AppBar position="static">
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              LOGO
-            </Typography>
-
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              LOGO
-            </Typography>
-            <Box
-              sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, mr: 1 }}
-            ></Box>
-
-            <Box sx={{ flexGrow: 0 }}>
-              WELCOME "nume" &nbsp;&nbsp;
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
       <br />
+
       <div>
-        <Typography sx={{ fontWeight: "bold", background: "#cfe8fc" }}>
+        <Typography
+          component="h4"
+          variant="h4"
+          sx={{
+            pl: 50,
+            fontWeight: "bold",
+            background: "#0000",
+            color: "white",
+          }}
+        >
           Your Recommendations
         </Typography>
       </div>
@@ -207,8 +143,15 @@ const StatusRecommendations = () => {
           alignItems="flex-end"
         >
           <Button
-            variant="contained"
-            color="primary"
+            style={{
+              weight: 200,
+              borderRadius: 35,
+              padding: "18px 32px",
+              fontSize: "18px",
+              color: "white",
+              borderWidth: 4,
+            }}
+            variant="outlined"
             sx={{ height: 40 }}
             onClick={() => navigate(-1)}
           >

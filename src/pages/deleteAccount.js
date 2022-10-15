@@ -7,7 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import { useNavigate } from "react-router-dom";
 import Footer from "./footer";
 import Header from "./header";
-
+import ParticlesBackground from "../components/ParticlesBackground";
 //const settings = ["Profile", "Logout"];
 //const today = Date.getFullYear() + "-" + Date.getMonth() + "-" + Date.getDate();
 const defaultValues = {
@@ -44,9 +44,10 @@ const DeleteAccount = () => {
     <div>
       <Header />
       <br />
+      <ParticlesBackground />
       <div>
         <Container maxWidth="sm" fixed>
-          <Box sx={{ bgcolor: "#cfe8fc" }}>
+          <Box sx={{ bgcolor: "#cfe8fc", borderRadius: 15 }}>
             <br />
             <form onSubmit={handleSubmit}>
               <Grid
@@ -80,7 +81,7 @@ const DeleteAccount = () => {
                 </Grid>
                 <br />
 
-                <Button variant="contained" color="primary" type="submit">
+                <Button variant="outlined" color="primary" type="submit">
                   Delete
                 </Button>
               </Grid>
@@ -98,7 +99,15 @@ const DeleteAccount = () => {
           alignItems="flex-end"
         >
           <Button
-            variant="contained"
+            style={{
+              weight: 200,
+              borderRadius: 35,
+              padding: "18px 32px",
+              fontSize: "18px",
+              color: "white",
+              borderWidth: 4,
+            }}
+            variant="outlined"
             color="primary"
             sx={{ height: 40 }}
             onClick={() => navigate(-1)}

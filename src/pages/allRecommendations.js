@@ -51,8 +51,15 @@ const AllRecommendations = () => {
           alignItems="flex-end"
         >
           <Button
-            variant="contained"
-            color="primary"
+            style={{
+              weight: 200,
+              borderRadius: 35,
+              padding: "18px 32px",
+              fontSize: "18px",
+              color: "white",
+              borderWidth: 4,
+            }}
+            variant="outlined"
             sx={{ height: 40 }}
             onClick={() => navigate(-1)}
           >

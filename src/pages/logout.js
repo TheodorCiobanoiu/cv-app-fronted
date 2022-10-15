@@ -24,13 +24,28 @@ export default function SignOut() {
         <CssBaseline />
         <br />
         <br />
-        <Typography component="h1" variant="h5" color="white">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <Typography component="h3" variant="h4" color="white">
           Successfully Logged out!
         </Typography>
         <Button
+          style={{
+            weight: 200,
+            borderRadius: 35,
+            padding: "18px 32px",
+            fontSize: "18px",
+            color: "white",
+            borderWidth: 4,
+          }}
           type="submit"
           fullWidth
-          variant="contained"
+          variant="outlined"
           sx={{ mt: 3, mb: 2 }}
           onClick={handleBackToMain}
         >
