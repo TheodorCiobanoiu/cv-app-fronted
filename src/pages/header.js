@@ -44,7 +44,7 @@ function Header() {
                             variant="h6"
                             noWrap
                             component="a"
-                            href="https://www.db.com/index?language_id=1&kid=sl.redirect-en.shortcut"
+                            href="/content"
                             sx={{
                                 mr: 2,
                                 display: { xs: "none", md: "flex" },

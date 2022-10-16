@@ -31,25 +31,6 @@ const AddAccount = () => {
             [name]: value,
         });
     };
-    /*const handleSliderChange = (name) => (e, value) => {
-      setFormValues({
-        ...formValues,
-        [name]: value,
-      });
-
-    }; */
-
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     console.log(formValues);
-    // };
-
-
-
-// const handleSubmit = (event) => {
-//   event.preventDefault();
-//   console.log(formValues);
-// };
 
 const handleSubmit = (e) => {
     //e.preventDefault();
