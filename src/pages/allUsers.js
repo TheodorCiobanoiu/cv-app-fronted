@@ -9,10 +9,6 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import {default as data} from './MOCK_DATA.json'
 import React, {Component, useState} from 'react';
 import Box from "@mui/material/Box";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import CardActions from "@mui/material/CardActions";
-import Button from "@mui/material/Button";
 import usePagination from "./pagination";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({

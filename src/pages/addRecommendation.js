@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -13,10 +13,10 @@ import CardContent from "@mui/material/CardContent";
 import { useNavigate } from "react-router-dom";
 import Footer from "./footer";
 import Header from "./header";
-import ShowQuestions from "./components/showQuestion";
 import ParticlesBackground from "../components/ParticlesBackground";
-import {default as questions} from './QUESTIONS.json'
-import {Divider, List, ListItem} from "@mui/material";
+import axios from "axios";
+import authHeader from "../services/auth-header";
+// import {default as questions} from './QUESTIONS.json'
 //const today = Date.getFullYear() + "-" + Date.getMonth() + "-" + Date.getDate();
 const defaultValues = {
   name: "",
@@ -26,7 +26,38 @@ const defaultValues = {
   favoriteNumber: 0,
 };
 
-const AddRecommendation = () => {
+
+
+
+function AddRecommendation(){
+  const [questions, setQuestions] = useState(null);
+
+  const fetchData = () => {
+    return axios.get("http://localhost:8082/question/all", {headers: authHeader()})
+        .then((response) => setQuestions(response.data));
+  }
+
+  useEffect(() => {
+    fetchData();
+  },[])
+
+  // const [answers, setAnswers] = useState(null);
+  //
+  // const fetchData2 = () => {
+  //   return axios.post("http://localhost:8082/recommendation/add", {headers: authHeader()})
+  //       .then((response) => setAnswers(response.data));
+  // }
+  //
+  // useEffect(() => {
+  //   fetchData2();
+  // },[])
+
+
+
+
+
+
+
   const [formValues, setFormValues] = useState(defaultValues);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -63,7 +94,8 @@ const AddRecommendation = () => {
         <Container maxWidth="sm" fixed>
           <Box sx={{ bgcolor: "#403bbc", opacity: 0.5}}>
             <form onSubmit={handleSubmit}>
-              <FormLabel>Recommendation Form</FormLabel>
+              <FormLabel>Recommendation Form
+                !!!{JSON.stringify(questions)}!!!</FormLabel>
               <Grid
                 container
                 alignItems="center"
@@ -94,16 +126,14 @@ const AddRecommendation = () => {
                 <br />
 
                 <div>
-                  {questions.map((question,key) =>
-                      {
-                        return(
-                            <Grid item>
+                  {questions && questions.length && questions.map((question, key) => (
+                            <Grid item key={question.id}>
                               <Card sx={{ maxWidth: 400}} >
                               <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
-                                {question.question_body}
+                                {question.questionBody}{question.type}
                                 </Typography>
-                                {(question.type === 1 ) &&
+                                {(question.type === "Free_Text" ) &&
                                     <Box
                                         component="form"
                                         sx={{
@@ -120,40 +150,16 @@ const AddRecommendation = () => {
                                             variant="filled"
                                         />
                                     </Box>}
-                                {(question.type === 2 ) &&
+                                {(question.type === "Single_Choice" ) &&
                                     <Typography> bow </Typography>}
-                                {(question.type === 3 ) &&
+                                {(question.type === "Multiple_Choice" ) &&
                                     <Typography> pock </Typography>}
                               </CardContent>
                               </Card>
                               <br />
                             </Grid>
-                        )
-                      }
-                  )}
+                        ))}
                 </div>
-
-                <Grid item>
-                  <Card sx={{ maxWidth: 400 }}>
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        Q2
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles,
-                        with over 6,000 species, ranging across all continents
-                        except Antarctica
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button size="small">Share</Button>
-                      <Button size="small">Learn More</Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-
-
-
                 <br />
                 <Button variant="contained" component="label">
                   Upload CV

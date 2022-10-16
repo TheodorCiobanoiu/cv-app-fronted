@@ -1,5 +1,4 @@
 import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 import Footer from "./footer";
 import Header from "./header";
 import ParticlesBackground from "../components/ParticlesBackground";
@@ -15,6 +14,10 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import usePagination from "./pagination";
 import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Card from "@mui/material/Card";
+// import AuthService from "../services/auth.service";
+// import RecommendationService from "../services/recommendation.service";
 const useStyles = makeStyles(() => ({
     ul: {
         "& .MuiPaginationItem-root": {
@@ -22,80 +25,75 @@ const useStyles = makeStyles(() => ({
         }
     }
 }));
-export default function StatusRecommendations() {
+export default function AllRecommendations() {
 
-    let [spage, setsPage] = useState(1);
-    const PER_PAGE = 10;
+    let [page, setPage] = useState(1);
+    const PER_PAGE = 5;
 
     const count = Math.ceil(data.length / PER_PAGE);
     const _DATA = usePagination(data, PER_PAGE);
 
     const handleChange = (e, p) => {
-        setsPage(p);
+        setPage(p);
         _DATA.jump(p);
     };
 
     const classes=useStyles();
+
+
     return(
 
-        <Box p="5">
-            <Header/>
-            <ParticlesBackground/>
-            <Pagination
-                classes={{ ul: classes.ul }}
-                renderItem={(item) => (
-                    <PaginationItem
-                        components={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
-                        {...item}
-                    />)}
-                count={count}
-                color="primary"
-                size="large"
-                page={spage}
-                variant="outlined"
-                shape="rounded"
-                defaultPage={1}
-                showFirstButton
-                showLastButton
-                onChange={handleChange}
-            />
-
-            <Box color="white">
-                <List p="10" pt="3" spacing={2} color>
-                    {_DATA.currentData().map(v => {
-                        return (
-                            <ListItem key={v.id} listStyleType="disc">
-                                <span>{v.sku}</span>{" "}
-                                <Divider display="inline" orientation="vertical" />
-                                <span> {v.category_type}</span>{" "}
-                                <Divider display="inline" orientation="vertical" />
-                                <span>
+    <Box p="5">
+        <Header/>
+        <ParticlesBackground/>
+        <Pagination
+            classes={{ ul: classes.ul }}
+            renderItem={(item) => (
+                <PaginationItem
+                    components={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+                    {...item}
+                />)}
+            count={count}
+            color="primary"
+            size="large"
+            page={page}
+            variant="outlined"
+            shape="rounded"
+            defaultPage={1}
+            showFirstButton
+            showLastButton
+            onChange={handleChange}
+        />
+        <Box color="white">
+        <List p="10" pt="3" spacing={2} color>
+            {_DATA.currentData().map(v => {
+                return (
+                    <Grid key={v.id} listStyleType="disc">
+                        <Card sx={{ maxWidth: 400 }} style={{backgroundColor: "transparent", border: "3px solid green" }}>
+                            <CardContent style={{color: "white"}}>
+                        <span>{v.sku}</span>{" "}
+                        <Divider display="inline" orientation="vertical" />
+                        <span> {v.category_type}</span>{" "}
+                        <Divider display="inline" orientation="vertical" />
+                        <span>
               </span>
-                            </ListItem>
-                        );
-                    })}
-                </List>
-            </Box>
+                            </CardContent>
+                        </Card>
+                        <br />
+                    </Grid>
+                );
+            })}
+            <br/>
+        </List>
 
-            <Pagination
-                classes={{ ul: classes.ul }}
-                renderItem={(item) => (
-                    <PaginationItem
-                        components={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
-                        {...item}
-                    />)}
-                count={count}
-                color="primary"
-                size="large"
-                page={spage}
-                variant="outlined"
-                shape="rounded"
-                defaultPage={1}
-                showFirstButton
-                showLastButton
-                onChange={handleChange}
-            />
-            <Footer />
         </Box>
+
+
+
+        <Footer />
+    </Box>
     );
 }
+
+// export default LocalFileRead;
+
