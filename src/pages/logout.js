@@ -7,6 +7,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import ParticlesBackground from "../components/ParticlesBackground";
 import Footer from "./footer";
+import {useEffect} from "react";
+import AuthService from "../services/auth.service";
 
 const theme = createTheme();
 
@@ -16,6 +18,10 @@ export default function SignOut() {
     let path = "/home";
     navigate(path);
   };
+
+  useEffect(() => {
+      AuthService.logout();
+  },[]);
 
   return (
       <ThemeProvider theme={theme}>

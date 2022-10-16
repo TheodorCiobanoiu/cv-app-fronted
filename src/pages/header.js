@@ -10,6 +10,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { menuItems } from "./menuItems";
+import AuthService from "../services/auth.service";
 
 function Header() {
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -21,6 +22,7 @@ function Header() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    const userName = AuthService.getCurrentUser().username;
 
     // let navigate = useNavigate();
 
@@ -61,7 +63,7 @@ function Header() {
                         ></Box>
 
                         <Box sx={{ flexGrow: 0 }}>
-                            WELCOME "nume" &nbsp;&nbsp;
+                            WELCOME {userName} &nbsp;&nbsp;
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                     <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
