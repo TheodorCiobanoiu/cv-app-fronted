@@ -8,169 +8,167 @@ import { useNavigate } from "react-router-dom";
 import Footer from "./footer";
 import Header from "./header";
 import ParticlesBackground from "../components/ParticlesBackground";
+import AuthService from "../services/auth.service";
+import authHeader from "../services/auth-header";
+import axios from "axios";
 //const settings = ["Profile", "Logout"];
 //const today = Date.getFullYear() + "-" + Date.getMonth() + "-" + Date.getDate();
 const defaultValues = {
-  name: "",
-  date: "10/04/2022",
-  gender: "",
-  os: "",
-  favoriteNumber: 0,
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: ""
 };
 
 const AddAccount = () => {
-  const [formValues, setFormValues] = useState(defaultValues);
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-  /*const handleSliderChange = (name) => (e, value) => {
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };*/
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(formValues);
-  };
 
-  const navigate = useNavigate();
+    const [formValues, setFormValues] = useState(defaultValues);
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({
+            ...formValues,
+            [name]: value,
+        });
+    };
+    /*const handleSliderChange = (name) => (e, value) => {
+      setFormValues({
+        ...formValues,
+        [name]: value,
+      });
 
-  return (
-      <div>
+    }; */
+
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     console.log(formValues);
+    // };
+
+
+
+// const handleSubmit = (event) => {
+//   event.preventDefault();
+//   console.log(formValues);
+// };
+
+const handleSubmit = (e) => {
+    //e.preventDefault();
+    let apiResponse;
+     AuthService.register(formValues.firstName, formValues.lastName, formValues.username, formValues.email, formValues.password).then((response) =>{
+        apiResponse = response.data;
+    }).catch(error => console.log(error));
+    console.log("After register request server responded with: ");
+    console.log(apiResponse)
+    alert('Data Inserted');
+    //console.log(formValues);
+}
+
+const navigate = useNavigate();
+
+return (
+    <div>
         <Header />
         <br />
-        <ParticlesBackground />
         <div>
-          <Container maxWidth="sm" fixed>
-            <Box
-                sx={{
-                  bgcolor: "#cfe8fc",
-                  width: 500,
-                  marginLeft: 10,
-                  borderRadius: 15,
-                }}
-            >
-              <br />
-              <form onSubmit={handleSubmit}>
-                <Grid
-                    container
-                    alignItems="center"
-                    justifyContent="center"
-                    direction="column"
-                >
-                  <Grid item>
-                    <TextField
-                        id="name-input"
-                        name="prenume"
-                        label="First Name: "
-                        type="text"
-                        value={formValues.prenume}
-                        onChange={handleInputChange}
-                        required
-                    />
-                  </Grid>
-                  <br />
-                  <Grid item>
-                    <TextField
-                        id="name-input"
-                        name="nume"
-                        label="Last name: "
-                        type="text"
-                        value={formValues.nume}
-                        onChange={handleInputChange}
-                        required
-                    />
-                  </Grid>
-                  <br />
-                  <Grid item>
-                    <TextField
-                        id="username"
-                        name="username"
-                        label="Username: "
-                        type="text"
-                        value={formValues.username}
-                        onChange={handleInputChange}
-                        required
-                    />
-                  </Grid>
-                  <br />
-                  <Grid item>
-                    <TextField
-                        id="email"
-                        name="email"
-                        label="Email"
-                        type="email"
-                        value={formValues.email}
-                        onChange={handleInputChange}
-                        required
-                    />
-                  </Grid>
-                  <br />
-                  <Grid item>
-                    <TextField
-                        id="password"
-                        required
-                        label="Password: "
-                        name="password"
-                        type="password"
-                        value={formValues.username}
-                        onChange={handleInputChange}
-                    />
-                  </Grid>
-                  <br />
-                  <Grid item>
-                    <TextField
-                        id="address"
-                        label="Address: "
-                        name="address"
-                        type="text"
-                        value={formValues.username}
-                        onChange={handleInputChange}
-                    />
-                  </Grid>
-                  <br />
-                  <Button variant="contained" color="primary" type="submit">
-                    Create
-                  </Button>
-                </Grid>
-                <br />
-              </form>
-            </Box>
-          </Container>{" "}
+            <Container maxWidth="sm" fixed>
+                <Box sx={{ bgcolor: "#cfe8fc" }}>
+                    <br />
+                    <form onSubmit={e => handleSubmit(e)}>
+                        <Grid
+                            container
+                            alignItems="center"
+                            justify="center"
+                            direction="column"
+                        >
+                            <Grid item>
+                                <TextField
+                                    id="firstName"
+                                    name="firstName"
+                                    label="First Name: "
+                                    type="text"
+                                    value={formValues.firstName}
+                                    onChange={e => handleInputChange(e)}
+                                    required
+                                />
+                            </Grid>
+                            <br />
+                            <Grid item>
+                                <TextField
+                                    id="lastName"
+                                    name="lastName"
+                                    label="Last name: "
+                                    type="text"
+                                    value={formValues.lastName}
+                                    onChange={e => handleInputChange(e)}
+                                    required
+                                />
+                            </Grid>
+                            <br />
+                            <Grid item>
+                                <TextField
+                                    id="username"
+                                    name="username"
+                                    label="Username: "
+                                    type="text"
+                                    value={formValues.username}
+                                    onChange={e => handleInputChange(e)}
+                                    required
+                                />
+                            </Grid>
+                            <br />
+                            <Grid item>
+                                <TextField
+                                    id="email"
+                                    name="email"
+                                    label="Email"
+                                    type="email"
+                                    value={formValues.email}
+                                    onChange={e => handleInputChange(e)}
+                                    required
+                                />
+                            </Grid>
+                            <br />
+                            <Grid item>
+                                <TextField
+                                    id="password"
+                                    required
+                                    label="Password: "
+                                    name="password"
+                                    type="password"
+                                    value={formValues.password}
+                                    onChange={e => handleInputChange(e)}
+                                />
+                            </Grid>
+                            <br />
+                            <Button variant="contained" color="primary" type="submit" href="/admin" onClick={handleSubmit}>
+                                Create
+                            </Button>
+                        </Grid>
+                        <br />
+                    </form>
+                </Box>
+            </Container>{" "}
         </div>
         <br />
         <div>
-          <Box
-              m={1}
-              display="flex"
-              justifyContent="flex-end"
-              alignItems="flex-end"
-          >
-            <Button
-                style={{
-                  weight: 200,
-                  borderRadius: 35,
-                  padding: "18px 32px",
-                  fontSize: "18px",
-                  color: "white",
-                  borderWidth: 4,
-                }}
-                variant="outlined"
-                color="primary"
-                sx={{ height: 40 }}
-                onClick={() => navigate(-1)}
+            <Box
+                m={1}
+                display="flex"
+                justifyContent="flex-end"
+                alignItems="flex-end"
             >
-              Go back
-            </Button>
-          </Box>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    sx={{ height: 40 }}
+                    onClick={() => navigate(-1)}
+                >
+                    Go back
+                </Button>
+            </Box>
         </div>
         <Footer />
-      </div>
-  );
+    </div>
+);
 };
 export default AddAccount;
