@@ -29,12 +29,11 @@ export default function StatusRecommendations() {
     let [spage, setsPage] = useState(1);
     const [data, setData] = useState([]);
     console.log("INSIDE ALL USERS COMPONENTS");
-    const API_URL = 'http:localhost:8082/admin/';
     const getData = ()  =>{
-
-        console.log("Inside useEffect");
         AdminService.getAllUsers().then((response) => {
                 const allData = response.data;
+                console.log("Inside getData(): allData variable: ")
+                console.log(allData);
                 setData(allData);
         }).catch(error => console.error(error));
     };
