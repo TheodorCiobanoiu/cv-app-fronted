@@ -41,17 +41,6 @@ function AddRecommendation(){
     fetchData();
   },[])
 
-  // const [answers, setAnswers] = useState(null);
-  //
-  // const fetchData2 = () => {
-  //   return axios.post("http://localhost:8082/recommendation/add", {headers: authHeader()})
-  //       .then((response) => setAnswers(response.data));
-  // }
-  //
-  // useEffect(() => {
-  //   fetchData2();
-  // },[])
-
 
 
 
@@ -160,6 +149,9 @@ function AddRecommendation(){
                             </Grid>
                         ))}
                 </div>
+
+
+
                 <br />
                 <Button variant="contained" component="label">
                   Upload CV

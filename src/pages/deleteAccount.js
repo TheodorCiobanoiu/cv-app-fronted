@@ -8,18 +8,20 @@ import { useNavigate } from "react-router-dom";
 import Footer from "./footer";
 import Header from "./header";
 import ParticlesBackground from "../components/ParticlesBackground";
+import AdminService from "../services/admin.service";
 //const settings = ["Profile", "Logout"];
 //const today = Date.getFullYear() + "-" + Date.getMonth() + "-" + Date.getDate();
-const defaultValues = {
-  name: "",
-  date: "10/04/2022",
-  gender: "",
-  os: "",
-  favoriteNumber: 0,
-};
+// const defaultValues = {
+//   name: "",
+//   date: "10/04/2022",
+//   gender: "",
+//   os: "",
+//   favoriteNumber: 0,
+// };
 
 const DeleteAccount = () => {
-  const [formValues, setFormValues] = useState(defaultValues);
+  const [formValues, setFormValues] = useState('');
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
@@ -38,6 +40,14 @@ const DeleteAccount = () => {
     console.log(formValues);
   };
 
+  const handleDelete = () => {
+      console.log(formValues);
+      let axiosResponse;
+      AdminService.deleteUser(formValues).then((response) => {
+          axiosResponse = response.data;
+          console.log(axiosResponse);
+      }).catch(error => console.log(error));
+  }
   const navigate = useNavigate();
 
   return (
@@ -68,20 +78,20 @@ const DeleteAccount = () => {
                     />
                   </Grid>
                   <br />
-                  <Grid item>
-                    <TextField
-                        id="password"
-                        label="Admin Password: "
-                        name="password"
-                        type="password"
-                        value={formValues.username}
-                        onChange={handleInputChange}
-                        required
-                    />
-                  </Grid>
+                  {/*<Grid item>*/}
+                  {/*  <TextField*/}
+                  {/*      id="password"*/}
+                  {/*      label="UNIQUE ADMIN PASSWORD: "*/}
+                  {/*      name="password"*/}
+                  {/*      type="password"*/}
+                  {/*      value={formValues.username}*/}
+                  {/*      onChange={handleInputChange}*/}
+                  {/*      required*/}
+                  {/*  />*/}
+                  {/*</Grid>*/}
                   <br />
 
-                  <Button variant="outlined" color="primary" type="submit">
+                  <Button variant="outlined" color="primary" type="submit" onClick={handleDelete}>
                     Delete
                   </Button>
                 </Grid>

@@ -12,7 +12,7 @@ import authHeader from "../services/auth-header";
 import QuestionService from "../services/question.service"
 
 
-export default class UserForm extends Component {
+export default class AddQuestion extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);

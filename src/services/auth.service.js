@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:8082/api/auth/";
 
@@ -22,12 +23,14 @@ class AuthService {
         localStorage.removeItem("user");
     }
 
-    register(username, email, password) {
+    register(firstName, lastName, username, email, password) {
         return axios.post(API_URL + "signup", {
+            firstName,
+            lastName,
             username,
             email,
             password
-        });
+        }, {headers: authHeader()});
     }
 
     getCurrentUser() {
