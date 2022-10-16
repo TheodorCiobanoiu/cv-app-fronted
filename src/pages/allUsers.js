@@ -6,8 +6,8 @@ import ParticlesBackground from "../components/ParticlesBackground";
 import {Divider, List, ListItem, PaginationItem} from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import {default as data} from './MOCK_DATA.json'
-import React, {Component, useState} from 'react';
+//import {default as data} from './MOCK_DATA.json'
+import React, {Component, useEffect, useState} from 'react';
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -15,6 +15,9 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import usePagination from "./pagination";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
+import AdminService from "../services/admin.service";
+import authHeader from "../services/auth-header";
 const useStyles = makeStyles(() => ({
     ul: {
         "& .MuiPaginationItem-root": {
@@ -23,8 +26,24 @@ const useStyles = makeStyles(() => ({
     }
 }));
 export default function StatusRecommendations() {
-
     let [spage, setsPage] = useState(1);
+    const [data, setData] = useState([]);
+    console.log("INSIDE ALL USERS COMPONENTS");
+    const API_URL = 'http:localhost:8082/admin/';
+    const getData = ()  =>{
+
+        console.log("Inside useEffect");
+        AdminService.getAllUsers().then((response) => {
+                const allData = response.data;
+                setData(allData);
+        }).catch(error => console.error(error));
+    };
+    useEffect(() => {
+        getData();
+        console.log("DATA OBJECT: ");
+        console.log(data);
+    },[]);
+
     const PER_PAGE = 10;
 
     const count = Math.ceil(data.length / PER_PAGE);

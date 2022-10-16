@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
-
   "proxy": "http://localhost:8082",
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
@@ -11,8 +10,8 @@
     "@emotion/styled": "^11.10.4",
     "@material-ui/core": "^4.12.4",
     "@material-ui/lab": "^4.0.0-alpha.61",
-    "@mui/icons-material": "^5.10.6",
-    "@mui/material": "^5.10.8",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.9",
     "@mui/styled-engine-sc": "^5.10.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
