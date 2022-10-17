@@ -7,7 +7,7 @@ const API_URL = 'http://localhost:8082/admin/';
 
 class AdminService {
     getAllUsers(){
-        return axios.get(API_URL+'all-users', {headers: authHeader()});
+        return axios.get("http://localhost:8082/admin/all-users", {headers: authHeader()});
     }
 
     deleteUser(username){

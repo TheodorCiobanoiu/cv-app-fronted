@@ -24,7 +24,8 @@ export default function SignOut() {
         <CssBaseline />
 
         <Typography component="h1" variant="h5" color="white" sx={{ mb: 5 }}>
-          Hello, our site is cool trust me
+          Welcome to CV Resume Platform!
+            Recommend your friends, review recommendation, gestionate platform and so much more!
         </Typography>
         <br />
         <Button

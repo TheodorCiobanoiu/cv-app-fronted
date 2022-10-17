@@ -72,7 +72,7 @@ function AddRecommendation(){const defaultValues = {
       <ParticlesBackground />
       <div>
         <Container maxWidth="sm" fixed>
-          <Box sx={{ bgcolor: "#403bbc", opacity: 0.5}}>
+          <Box sx={{ bgcolor: "#403bbc"}}>
             <form onSubmit={handleSubmit}>
               <FormLabel>Recommendation Form</FormLabel>
               <Grid
