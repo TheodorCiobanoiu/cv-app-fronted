@@ -16,20 +16,18 @@ import Header from "./header";
 import ParticlesBackground from "../components/ParticlesBackground";
 import axios from "axios";
 import authHeader from "../services/auth-header";
-// import {default as questions} from './QUESTIONS.json'
-//const today = Date.getFullYear() + "-" + Date.getMonth() + "-" + Date.getDate();
-const defaultValues = {
+import MenuItem from "@mui/material/MenuItem";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+
+
+function AddRecommendation(){const defaultValues = {
   name: "",
   date: "10/04/2022",
   gender: "",
   os: "",
   favoriteNumber: 0,
 };
-
-
-
-
-function AddRecommendation(){
   const [questions, setQuestions] = useState(null);
 
   const fetchData = () => {
@@ -40,12 +38,6 @@ function AddRecommendation(){
   useEffect(() => {
     fetchData();
   },[])
-
-
-
-
-
-
 
   const [formValues, setFormValues] = useState(defaultValues);
   const handleInputChange = (e) => {
@@ -66,12 +58,11 @@ function AddRecommendation(){
     console.log(formValues);
   };
 
-  const [value, setValue] = React.useState('Meoooow');
+  const [value, setValue] = React.useState();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    this.setValue({[event.target.name]: event.target.value})
   };
-
   const navigate = useNavigate();
 
   return (
@@ -83,8 +74,7 @@ function AddRecommendation(){
         <Container maxWidth="sm" fixed>
           <Box sx={{ bgcolor: "#403bbc", opacity: 0.5}}>
             <form onSubmit={handleSubmit}>
-              <FormLabel>Recommendation Form
-                !!!{JSON.stringify(questions)}!!!</FormLabel>
+              <FormLabel>Recommendation Form</FormLabel>
               <Grid
                 container
                 alignItems="center"
@@ -140,9 +130,78 @@ function AddRecommendation(){
                                         />
                                     </Box>}
                                 {(question.type === "Single_Choice" ) &&
-                                    <Typography> bow </Typography>}
+                                    <TextField
+                                        id="filled-select-answer"
+                                        select
+                                        label="Select"
+                                        //value={currency}
+                                        // Vespi: aici la value CRED ca trebuie sa faca legatura cu answer(gen sa fie answerBody)
+                                        onChange={handleChange}
+                                        variant="filled"
+                                    >
+                                      {question.possibleAnswer1 &&
+                                      <MenuItem value={question.possibleAnswer1}>
+                                        {/*Vespi: banuiesc ca e aceeasi treaba ca mai sus??? la fiecare MenuItem */}
+                                            {question.possibleAnswer1}
+                                      </MenuItem>}
+                                      {question.possibleAnswer2 &&
+                                          <MenuItem value={question.possibleAnswer2}>
+                                            {question.possibleAnswer2}
+                                          </MenuItem>
+                                      }
+                                      {question.possibleAnswer3 &&
+                                          <MenuItem value={question.possibleAnswer3}>
+                                            {question.possibleAnswer3}
+                                          </MenuItem>
+                                      }
+                                      {question.possibleAnswer4 &&
+                                          <MenuItem value={question.possibleAnswer4}>
+                                            {question.possibleAnswer4}
+                                          </MenuItem>
+                                      }
+                                    </TextField>}
                                 {(question.type === "Multiple_Choice" ) &&
-                                    <Typography> pock </Typography>}
+                                    <Box>
+                                    <FormControlLabel
+                                  label= {question.possibleAnswer1}
+                                  control={
+                                  <Checkbox
+                                  checked={value}
+                                   onChange={handleChange}
+                                  inputProps={{ 'possibleAnswer1': question.possibleAnswer1 }}
+                                  value={question.possibleAnswer1}
+                                  />}
+                                  />
+                                  <FormControlLabel
+                                  label= {question.possibleAnswer2}
+                                  control={
+                                  <Checkbox
+                                      checked={value}
+                                      onChange={handleChange}
+                                  inputProps={{ 'possibleAnswer2': question.possibleAnswer2 }}
+                                  value={question.possibleAnswer2}
+                                  />}
+                                  />
+                                  <FormControlLabel
+                                  label= {question.possibleAnswer3}
+                                  control={
+                                  <Checkbox
+                                      checked={value}
+                                      onChange={handleChange}
+                                  inputProps={{ 'possibleAnswer3': question.possibleAnswer1 }}
+                                  value={question.possibleAnswer1}
+                                  />}
+                                  />
+                                  <FormControlLabel
+                                  label= {question.possibleAnswer1}
+                                  control={
+                                  <Checkbox
+                                  checked={value}
+                                  onChange={handleChange}
+                                  inputProps={{ 'possibleAnswer1': question.possibleAnswer1 }}
+                                  value={question.possibleAnswer1}
+                                  />}
+                                  /></Box>}
                               </CardContent>
                               </Card>
                               <br />

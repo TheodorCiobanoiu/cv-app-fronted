@@ -4,12 +4,12 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import { useNavigate } from "react-router-dom";
 import Footer from "./footer";
 import Header from "./header";
 import ParticlesBackground from "../components/ParticlesBackground";
 import authHeader from "../services/auth-header";
 import QuestionService from "../services/question.service"
+import FormLabel from "@material-ui/core/FormLabel";
 
 
 export default class AddQuestion extends Component {
@@ -29,13 +29,7 @@ export default class AddQuestion extends Component {
   }
 
   onInputChange(e) {
-    //console.log(e.target.value);
     this.setState({[e.target.name]: e.target.value});
-    // this.setState({ [e.target.questionBody]: e.target.value });
-    // this.setState({ [e.target.possibleAnswer1]: e.target.value });
-    // this.setState({ [e.target.possibleAnswer2]: e.target.value });
-    // this.setState({ [e.target.possibleAnswer3]: e.target.value });
-    // this.setState({ [e.target.possibleAnswer4]: e.target.value });
   };
 
   handleSubmit(e) {
@@ -84,7 +78,7 @@ export default class AddQuestion extends Component {
           <div className="container">
             <Container maxWidth="sm" fixed>
               <Box sx={{bgcolor: "#cfe8fc", borderRadius: 15}}>
-                ADD QUESTION
+                <FormLabel>ADD QUESTION</FormLabel>
                 <br/>
                 <form onSubmit={this.handleSubmit}>
                   <Grid
@@ -189,7 +183,7 @@ export default class AddQuestion extends Component {
                   variant="outlined"
                   color="primary"
                   sx={{height: 40}}
-                  //onClick={() => navigate(-1)}
+                 // onClick={() => navigate(-1)}
               >
                 Go back
               </Button>
