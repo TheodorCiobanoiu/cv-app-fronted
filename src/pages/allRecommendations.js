@@ -6,7 +6,7 @@ import {Divider, List, ListItem, PaginationItem} from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import {default as data} from './MOCK_DATA.json'
-import React, {Component, useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -16,6 +16,8 @@ import usePagination from "./pagination";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@mui/material/Card";
+import RecommendationService from "../services/recommendation.service";
+// import {response} from "express";
 // import AuthService from "../services/auth.service";
 // import RecommendationService from "../services/recommendation.service";
 const useStyles = makeStyles(() => ({
@@ -28,7 +30,24 @@ const useStyles = makeStyles(() => ({
 export default function AllRecommendations() {
 
     let [page, setPage] = useState(1);
+    let [recommendation, setRecommendation] = useState();
+
     const PER_PAGE = 5;
+
+    const getData = () => {
+        RecommendationService.getAllRecommendations().then((response) => {
+            const data = response.data;
+            console.log("Inside getData(): allData variable: ")
+            console.log(data);
+            setRecommendation(data);
+        }).catch(error => console.log(error));
+    };
+
+    useEffect(() =>{
+        getData();
+        console.log("Recommendation objects:");
+        console.log(recommendation);
+    },[]);
 
     const count = Math.ceil(data.length / PER_PAGE);
     const _DATA = usePagination(data, PER_PAGE);
