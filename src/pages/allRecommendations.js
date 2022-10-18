@@ -122,10 +122,15 @@ import ParticlesBackground from "../components/ParticlesBackground";
 import {Divider, List, ListItem, PaginationItem} from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 //import {default as data} from './MOCK_DATA.json'
+
+import {default as data} from './MOCK_DATA.json'
+
 import React, {Component, useEffect, useState} from 'react';
 import Box from "@mui/material/Box";
 import usePagination from "./pagination";
+
 import {makeStyles} from "@material-ui/core/styles";
 import axios from "axios";
 import AdminService from "../services/admin.service";
@@ -135,7 +140,9 @@ import {GridApi} from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import {GridColDef} from "@mui/x-data-grid";
 import {GridCellValue} from "@mui/x-data-grid";
+
 import RecommendationService from "../services/recommendation.service";
+
 
 const useStyles = makeStyles(() => ({
     ul: {
@@ -144,6 +151,7 @@ const useStyles = makeStyles(() => ({
         }
     }
 }));
+
 
 const columns = [
     {field: 'firstName', headerName: 'ID'},
@@ -201,29 +209,49 @@ export default function StatusRecommendations() {
         },
     ];
 
-    const getData = () => {
-        RecommendationService.getAllRecommendations().then((response) => {
-            const allData = response.data;
-            console.log("Inside getData(): allData variable: ")
-            console.log(allData);
-            setData(allData);
-            // users = allData.slice();
-            // console.log(typeof users);
-            // users.forEach((user) => {
-            //     const newRole = user.roles[0].name;
-            //     user.role = newRole;
-            // });
-            // console.log(users);
-
-        }).catch(error => console.error(error));
-    };
-    useEffect(() => {
-        getData();
-        console.log("DATA OBJECT: ");
-        console.log(data);
-    }, []);
+    // const getData = () => {
+    //     RecommendationService.getAllRecommendations().then((response) => {
+    //         const allData = response.data;
+    //         console.log("Inside getData(): allData variable: ")
+    //         console.log(allData);
+    //         setData(allData);
+    //         // users = allData.slice();
+    //         // console.log(typeof users);
+    //         // users.forEach((user) => {
+    //         //     const newRole = user.roles[0].name;
+    //         //     user.role = newRole;
+    //         // });
+    //         // console.log(users);
+    //
+    //     }).catch(error => console.error(error));
+    // };
+    // useEffect(() => {
+    //     getData();
+    //     console.log("DATA OBJECT: ");
+    //     console.log(data);
+    // }, []);
 
     const PER_PAGE = 10;
+
+    let [page, setPage] = useState(1);
+    let [recommendation, setRecommendation] = useState();
+
+
+
+    const getData = () => {
+        RecommendationService.getAllRecommendations().then((response) => {
+            const data = response.data;
+            console.log("Inside getData(): allData variable: ")
+            console.log(data);
+            setRecommendation(data);
+        }).catch(error => console.log(error));
+    };
+
+    useEffect(() =>{
+        getData();
+        console.log("Recommendation objects:");
+        console.log(recommendation);
+    },[]);
 
     const count = Math.ceil(data.length / PER_PAGE);
     const _DATA = usePagination(data, PER_PAGE);
