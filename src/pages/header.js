@@ -55,7 +55,7 @@ function Header() {
                                 textDecoration: "none",
                             }}
                         >
-                            <img src="Assets/images/logo.png" alt="logo"></img>
+                            <img src="https://i.imgur.com/pNitQy6.png" alt="logo"></img>
                         </Typography>
 
                         <Box
