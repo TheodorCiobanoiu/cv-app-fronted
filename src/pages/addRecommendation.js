@@ -73,6 +73,54 @@ function AddRecommendation(){
   // };
   const navigate = useNavigate();
 
+
+  //**************UPLOAD/DONWLOAD STUFF
+
+  const state = {
+    // Initially, no file is selected
+    selectedFile: null
+  };
+
+  // On file select (from the pop up)
+  const onFileChange = (event) => {
+    // Update the state
+    state.selectedFile = event.target.files[0];
+  };
+
+  // On file upload (click the upload button)
+  const onFileUpload = () => {
+    // Create an object of formData
+    const formData = new FormData();
+    // Update the formData object
+    formData.append(
+        "file",
+        state.selectedFile,
+        state.selectedFile.name
+    );
+
+    // Details of the uploaded file
+    console.log(state.selectedFile);
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user.token);
+    axios.post('http://localhost:8082/file/uploadFile', formData, {
+      headers: {
+        Authorization: 'Bearer ' + user.token,
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    axios.post('http://localhost:8082/mail/sendMail',
+        {
+          to:'theodor.ciobanoiu@gmail.com',
+          subject:'Acesta este un test de mail',
+          text:'Dupa cum spune si titlul, acesta este doar un test :)'
+        }, {headers: authHeader()});
+
+    // Request made to the backend api
+    // Send formData object
+    //axios.post("api/uploadfile", formData);
+  };
+  //**************UPLOAD/DOWNLOAD STUFF
+
   return (
     <div>
       <Header />
@@ -261,9 +309,10 @@ function AddRecommendation(){
                   borderWidth: 4,
                 }}
                         variant="outlined"
-                        sx={{backgroundColor: 'white',  height: 40}} component="label">
+                        sx={{backgroundColor: 'white',  height: 40}} component="label"
+                >
                   Upload CV
-                  <input hidden accept=".pdf" multiple type="file" />
+                  <input hidden accept=".pdf" multiple type="file" onChange={onFileChange}/>
                 </Button>
                 <br />
                 <Button style={{
@@ -274,7 +323,9 @@ function AddRecommendation(){
                   borderWidth: 4,
                 }}
                         variant="outlined"
-                        sx={{backgroundColor: 'white',  height: 40}} color="primary" type="submit">
+                        sx={{backgroundColor: 'white',  height: 40}} color="primary" type="submit"
+                        onClick={onFileUpload}
+                >
                   Submit
                 </Button>
               </Grid>
