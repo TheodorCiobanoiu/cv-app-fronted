@@ -122,7 +122,15 @@ return (
                                 />
                             </Grid>
                             <br />
-                            <Button variant="contained" color="primary" type="submit" href="/admin" onClick={handleSubmit}>
+                            <Button style={{
+                                borderRadius: 35,
+                                padding: "18px 36px",
+                                fontSize: "18px",
+                                color: "black",
+                                borderWidth: 4,
+                            }}
+                                    variant="outlined"
+                                    sx={{backgroundColor: 'white',  height: 40}} type="submit" href="/admin" onClick={handleSubmit}>
                                 Create
                             </Button>
                         </Grid>
@@ -140,16 +148,24 @@ return (
                 alignItems="flex-end"
             >
                 <Button
-                    variant="contained"
-                    color="primary"
-                    sx={{ height: 40 }}
+                    style={{
+                        borderRadius: 35,
+                        padding: "18px 36px",
+                        fontSize: "18px",
+                        color: "black",
+                        borderWidth: 4,
+                    }}
+                    variant="outlined"
+                    sx={{backgroundColor: 'white',  height: 40}}
                     onClick={() => navigate(-1)}
                 >
                     Go back
                 </Button>
             </Box>
         </div>
-        <Footer />
+        <Box sx={{ mt: 13, mb: 0}}>
+            <Footer />
+        </Box>
     </div>
 );
 };

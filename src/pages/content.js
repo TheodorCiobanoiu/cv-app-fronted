@@ -20,10 +20,11 @@ const Content = () => {
                 borderRadius: 35,
                 padding: "18px 36px",
                 fontSize: "18px",
-                color: "white",
+                color: "black",
                 borderWidth: 4,
               }}
               variant="outlined"
+              sx={{backgroundColor: 'white' }}
               href="/completeRecommendation"
             >
               Add recommendation
@@ -34,10 +35,11 @@ const Content = () => {
                 borderRadius: 35,
                 padding: "18px 32px",
                 fontSize: "18px",
-                color: "white",
+                color: "black",
                 borderWidth: 4,
               }}
               variant="outlined"
+              sx={{backgroundColor: 'white' }}
               href="/yourRecommendation"
             >
               See status for recommendations
@@ -48,10 +50,11 @@ const Content = () => {
                   borderRadius: 35,
                   padding: "18px 36px",
                   fontSize: "18px",
-                  color: "white",
+                  color: "black",
                   borderWidth: 4,
                 }}
                 variant="outlined"
+                sx={{backgroundColor: 'white' }}
                 href="/viewRecommendations"
               >
                 See all recommendations
@@ -63,10 +66,11 @@ const Content = () => {
                   borderRadius: 35,
                   padding: "18px 36px",
                   fontSize: "18px",
-                  color: "white",
+                  color: "black",
                   borderWidth: 4,
                 }}
                 variant="outlined"
+                sx={{backgroundColor: 'white' }}
                 href="/admin"
               >
                 Admin control
@@ -75,7 +79,7 @@ const Content = () => {
           </Stack>
         </Box>
       </div>
-      <Box sx={{ mt: 30, mb: 4 }}>
+      <Box sx={{ mt: 21, mb: 0}}>
         <Footer />
       </Box>
     </div>

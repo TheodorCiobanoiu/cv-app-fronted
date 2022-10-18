@@ -75,7 +75,7 @@ const Content = () => {
                     </Stack>
                 </Box>
             </div>
-            <Box sx={{ mt: 30, mb: 4 }}>
+            <Box sx={{ mt: 21, mb: 4 }}>
                 <Footer />
             </Box>
         </div>

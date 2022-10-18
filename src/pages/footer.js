@@ -5,12 +5,12 @@ function Copyright(props) {
   return (
     <Typography
       variant="body2"
-      color="white"
+      color="black"
       align="center"
-      position="absolute"
+      position="relative"
       bottom='0'
       width="100%"
-      bgcolor="black"
+      bgcolor="white"
       {...props}
     >
       {"Copyright © "}

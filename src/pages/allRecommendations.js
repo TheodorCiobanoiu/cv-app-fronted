@@ -336,6 +336,9 @@ export default function StatusRecommendations() {
                 onChange={handleChange}
             />*/}
             {/*<Footer />*/}
+            <Box sx={{ mt: 0, mb: 0}}>
+                <Footer />
+            </Box>
         </Box>
     );
 }

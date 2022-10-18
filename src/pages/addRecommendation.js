@@ -253,12 +253,28 @@ function AddRecommendation(){
 
 
                 <br />
-                <Button variant="contained" component="label">
+                <Button style={{
+                  borderRadius: 35,
+                  padding: "18px 36px",
+                  fontSize: "18px",
+                  color: "black",
+                  borderWidth: 4,
+                }}
+                        variant="outlined"
+                        sx={{backgroundColor: 'white',  height: 40}} component="label">
                   Upload CV
                   <input hidden accept=".pdf" multiple type="file" />
                 </Button>
                 <br />
-                <Button variant="contained" color="primary" type="submit">
+                <Button style={{
+                  borderRadius: 35,
+                  padding: "18px 36px",
+                  fontSize: "18px",
+                  color: "black",
+                  borderWidth: 4,
+                }}
+                        variant="outlined"
+                        sx={{backgroundColor: 'white',  height: 40}} color="primary" type="submit">
                   Submit
                 </Button>
               </Grid>
@@ -276,9 +292,15 @@ function AddRecommendation(){
           alignItems="flex-end"
         >
           <Button
-            variant="contained"
-            color="primary"
-            sx={{ height: 40 }}
+              style={{
+                borderRadius: 35,
+                padding: "18px 36px",
+                fontSize: "18px",
+                color: "black",
+                borderWidth: 4,
+              }}
+              variant="outlined"
+              sx={{backgroundColor: 'white',  height: 40}}
             onClick={() => navigate(-1)}
           >
             Go back

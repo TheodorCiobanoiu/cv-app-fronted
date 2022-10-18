@@ -33,9 +33,9 @@ export default function Login() {
                 borderRadius: 35,
                 padding: "18px 36px",
                 fontSize: "18px",
-                color: "white",
+                color: "black",
                 borderWidth: 4,
-            }} variant="outlined" href="/addAccount">
+            }} variant="outlined" sx={{backgroundColor: 'white' }} href="/addAccount">
               Register account
             </Button>
             <Button
@@ -43,27 +43,27 @@ export default function Login() {
                 borderRadius: 35,
                 padding: "18px 36px",
                 fontSize: "18px",
-                color: "white",
+                color: "black",
                 borderWidth: 4,
-            }} variant="outlined" href="/deleteAccount">
+            }} variant="outlined" sx={{backgroundColor: 'white' }} href="/deleteAccount">
               Delete account
             </Button>
             <Button style={{
                 borderRadius: 35,
                 padding: "18px 36px",
                 fontSize: "18px",
-                color: "white",
+                color: "black",
                 borderWidth: 4,
-            }} variant="outlined" href="/addQuestion">
+            }} variant="outlined" sx={{backgroundColor: 'white' }} href="/addQuestion">
               Add questions
             </Button>
               <Button style={{
                   borderRadius: 35,
                   padding: "18px 36px",
                   fontSize: "18px",
-                  color: "white",
+                  color: "black",
                   borderWidth: 4,
-              }} variant="outlined" href="/allUsers">
+              }} variant="outlined" sx={{backgroundColor: 'white' }} href="/allUsers">
                   See all users.
               </Button>
           </Stack>
@@ -79,18 +79,24 @@ export default function Login() {
           alignItems="flex-end"
         >
           <Button
-            variant="contained"
-            color="primary"
-            sx={{ height: 40 }}
+              style={{
+                  borderRadius: 35,
+                  padding: "18px 36px",
+                  fontSize: "18px",
+                  color: "black",
+                  borderWidth: 4,
+              }}
+            variant="outlined"
+            sx={{backgroundColor: 'white',  height: 40}}
             onClick={() => navigate(-1)}
           >
             Go back
           </Button>
         </Box>
       </div>
-      <Box sx={{ mt: 35, mb: 4 }}>
-        <Footer />
-      </Box>
+        <Box sx={{ mt: 19, mb: 0}}>
+            <Footer />
+        </Box>
     </div>
   );
 }

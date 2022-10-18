@@ -92,7 +92,15 @@ const DeleteAccount = () => {
                                 {/*</Grid>*/}
                                 <br />
 
-                                <Button variant="outlined" color="primary" type="submit" onClick={handleDelete}>
+                                <Button style={{
+                                    borderRadius: 35,
+                                    padding: "18px 36px",
+                                    fontSize: "18px",
+                                    color: "black",
+                                    borderWidth: 4,
+                                }}
+                                        variant="outlined"
+                                        sx={{backgroundColor: 'white',  height: 40}} type="submit" onClick={handleDelete}>
                                     Delete
                                 </Button>
                             </Grid>
@@ -111,23 +119,23 @@ const DeleteAccount = () => {
                 >
                     <Button
                         style={{
-                            weight: 200,
                             borderRadius: 35,
-                            padding: "18px 32px",
+                            padding: "18px 36px",
                             fontSize: "18px",
-                            color: "white",
+                            color: "black",
                             borderWidth: 4,
                         }}
                         variant="outlined"
-                        color="primary"
-                        sx={{ height: 40 }}
+                        sx={{backgroundColor: 'white',  height: 40}}
                         onClick={() => navigate(-1)}
                     >
                         Go back
                     </Button>
                 </Box>
             </div>
-            <Footer />
+            <Box sx={{ mt: 44.1, mb: 0}}>
+                <Footer />
+            </Box>
         </div>
     );
 };

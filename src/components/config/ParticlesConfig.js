@@ -4,7 +4,7 @@ const ParticlesConfig = {
   autoPlay: true,
   background: {
     color: {
-      value: "#000",
+      value: "white",
     },
     image: "",
     position: "",
@@ -12,173 +12,173 @@ const ParticlesConfig = {
     size: "",
     opacity: 1,
   },
-  backgroundMask: {
-    composite: "destination-out",
-    cover: {
-      color: {
-        value: "#fff",
-      },
-      opacity: 1,
-    },
-    enable: false,
-  },
-  fullScreen: {
-    enable: true,
-    zIndex: -1,
-  },
-  detectRetina: true,
-  duration: 0,
-  fpsLimit: 120,
-  interactivity: {
-    detectsOn: "window",
-    events: {
-      onClick: {
-        enable: false,
-        mode: [],
-      },
-      onDiv: {
-        selectors: [],
-        enable: false,
-        mode: [],
-        type: "circle",
-      },
-      onHover: {
-        enable: true,
-        mode: "trail",
-        parallax: {
-          enable: false,
-          force: 2,
-          smooth: 10,
-        },
-      },
-      resize: true,
-    },
-    modes: {
-      attract: {
-        distance: 200,
-        duration: 0.4,
-        easing: "ease-out-quad",
-        factor: 1,
-        maxSpeed: 50,
-        speed: 1,
-      },
-      bounce: {
-        distance: 200,
-      },
-      bubble: {
-        distance: 200,
-        duration: 0.4,
-        mix: false,
-        divs: {
-          distance: 200,
-          duration: 0.4,
-          mix: false,
-          selectors: [],
-        },
-      },
-      connect: {
-        distance: 80,
-        links: {
-          opacity: 0.5,
-        },
-        radius: 60,
-      },
-      grab: {
-        distance: 100,
-        links: {
-          blink: false,
-          consent: false,
-          opacity: 1,
-        },
-      },
-      push: {
-        default: true,
-        groups: [],
-        quantity: 4,
-      },
-      remove: {
-        quantity: 2,
-      },
-      repulse: {
-        distance: 200,
-        duration: 0.4,
-        factor: 100,
-        speed: 1,
-        maxSpeed: 50,
-        easing: "ease-out-quad",
-        divs: {
-          distance: 200,
-          duration: 0.4,
-          factor: 100,
-          speed: 1,
-          maxSpeed: 50,
-          easing: "ease-out-quad",
-          selectors: [],
-        },
-      },
-      slow: {
-        factor: 3,
-        radius: 200,
-      },
-      trail: {
-        delay: 0.005,
-        pauseOnStop: true,
-        quantity: 5,
-        particles: {
-          color: {
-            value: "#ff0000",
-            animation: {
-              enable: true,
-              speed: 400,
-              sync: true,
-            },
-          },
-          collisions: {
-            enable: false,
-          },
-          links: {
-            enable: false,
-          },
-          move: {
-            outModes: {
-              default: "destroy",
-            },
-            speed: 2,
-          },
-          size: {
-            value: 5,
-            animation: {
-              enable: true,
-              speed: 5,
-              minimumValue: 1,
-              sync: true,
-              startValue: "min",
-              destroy: "max",
-            },
-          },
-        },
-      },
-      light: {
-        area: {
-          gradient: {
-            start: {
-              value: "#ffffff",
-            },
-            stop: {
-              value: "#000000",
-            },
-          },
-          radius: 1000,
-        },
-        shadow: {
-          color: {
-            value: "#000000",
-          },
-          length: 2000,
-        },
-      },
-    },
-  },
+  // backgroundMask: {
+  //   composite: "destination-out",
+  //   cover: {
+  //     color: {
+  //       value: "#fff",
+  //     },
+  //     opacity: 1,
+  //   },
+  //   enable: false,
+  // },
+  // fullScreen: {
+  //   enable: true,
+  //   zIndex: -1,
+  // },
+  // detectRetina: true,
+  // duration: 0,
+  // fpsLimit: 120,
+  // interactivity: {
+  //   detectsOn: "window",
+  //   events: {
+  //     onClick: {
+  //       enable: false,
+  //       mode: [],
+  //     },
+  //     onDiv: {
+  //       selectors: [],
+  //       enable: false,
+  //       mode: [],
+  //       type: "circle",
+  //     },
+  //     onHover: {
+  //       enable: true,
+  //       mode: "trail",
+  //       parallax: {
+  //         enable: false,
+  //         force: 2,
+  //         smooth: 10,
+  //       },
+  //     },
+  //     resize: true,
+  //   },
+  //   modes: {
+  //     attract: {
+  //       distance: 200,
+  //       duration: 0.4,
+  //       easing: "ease-out-quad",
+  //       factor: 1,
+  //       maxSpeed: 50,
+  //       speed: 1,
+  //     },
+  //     bounce: {
+  //       distance: 200,
+  //     },
+  //     bubble: {
+  //       distance: 200,
+  //       duration: 0.4,
+  //       mix: false,
+  //       divs: {
+  //         distance: 200,
+  //         duration: 0.4,
+  //         mix: false,
+  //         selectors: [],
+  //       },
+  //     },
+  //     connect: {
+  //       distance: 80,
+  //       links: {
+  //         opacity: 0.5,
+  //       },
+  //       radius: 60,
+  //     },
+  //     grab: {
+  //       distance: 100,
+  //       links: {
+  //         blink: false,
+  //         consent: false,
+  //         opacity: 1,
+  //       },
+  //     },
+  //     push: {
+  //       default: true,
+  //       groups: [],
+  //       quantity: 4,
+  //     },
+  //     remove: {
+  //       quantity: 2,
+  //     },
+  //     repulse: {
+  //       distance: 200,
+  //       duration: 0.4,
+  //       factor: 100,
+  //       speed: 1,
+  //       maxSpeed: 50,
+  //       easing: "ease-out-quad",
+  //       divs: {
+  //         distance: 200,
+  //         duration: 0.4,
+  //         factor: 100,
+  //         speed: 1,
+  //         maxSpeed: 50,
+  //         easing: "ease-out-quad",
+  //         selectors: [],
+  //       },
+  //     },
+  //     slow: {
+  //       factor: 3,
+  //       radius: 200,
+  //     },
+  //     trail: {
+  //       delay: 0.005,
+  //       pauseOnStop: true,
+  //       quantity: 5,
+  //       particles: {
+  //         color: {
+  //           value: "#ff0000",
+  //           animation: {
+  //             enable: true,
+  //             speed: 400,
+  //             sync: true,
+  //           },
+  //         },
+  //         collisions: {
+  //           enable: false,
+  //         },
+  //         links: {
+  //           enable: false,
+  //         },
+  //         move: {
+  //           outModes: {
+  //             default: "destroy",
+  //           },
+  //           speed: 2,
+  //         },
+  //         size: {
+  //           value: 5,
+  //           animation: {
+  //             enable: true,
+  //             speed: 5,
+  //             minimumValue: 1,
+  //             sync: true,
+  //             startValue: "min",
+  //             destroy: "max",
+  //           },
+  //         },
+  //       },
+  //     },
+  //     light: {
+  //       area: {
+  //         gradient: {
+  //           start: {
+  //             value: "#ffffff",
+  //           },
+  //           stop: {
+  //             value: "#ffffff",
+  //           },
+  //         },
+  //         radius: 1000,
+  //       },
+  //       shadow: {
+  //         color: {
+  //           value: "#ffffff",
+  //         },
+  //         length: 2000,
+  //       },
+  //     },
+  //   },
+  // },
   manualParticles: [],
   motion: {
     disable: false,
@@ -229,33 +229,33 @@ const ParticlesConfig = {
       },
     },
     color: {
-      value: "#ff0000",
-      animation: {
-        h: {
-          count: 0,
-          enable: true,
-          offset: 0,
-          speed: 50,
-          decay: 0,
-          sync: false,
-        },
-        s: {
-          count: 0,
-          enable: false,
-          offset: 0,
-          speed: 1,
-          decay: 0,
-          sync: true,
-        },
-        l: {
-          count: 0,
-          enable: false,
-          offset: 0,
-          speed: 1,
-          decay: 0,
-          sync: true,
-        },
-      },
+      value: "#2004df",
+      // animation: {
+      //   h: {
+      //     count: 0,
+      //     enable: true,
+      //     offset: 0,
+      //     speed: 50,
+      //     decay: 0,
+      //     sync: false,
+      //   },
+      //   s: {
+      //     count: 0,
+      //     enable: false,
+      //     offset: 0,
+      //     speed: 1,
+      //     decay: 0,
+      //     sync: true,
+      //   },
+      //   l: {
+      //     count: 0,
+      //     enable: false,
+      //     offset: 0,
+      //     speed: 1,
+      //     decay: 0,
+      //     sync: true,
+      //   },
+      // },
     },
     groups: {},
     move: {
@@ -319,7 +319,7 @@ const ParticlesConfig = {
         enable: false,
         length: 10,
         fillColor: {
-          value: "#000000",
+          value: "#ffffff",
         },
       },
       vibrate: false,
@@ -358,7 +358,7 @@ const ParticlesConfig = {
     shadow: {
       blur: 0,
       color: {
-        value: "#000",
+        value: "#fff",
       },
       enable: false,
       offset: {
@@ -543,7 +543,7 @@ const ParticlesConfig = {
       shadow: {
         blur: 5,
         color: {
-          value: "#000",
+          value: "#fff",
         },
         enable: false,
       },

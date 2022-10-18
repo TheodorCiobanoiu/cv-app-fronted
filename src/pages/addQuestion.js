@@ -10,6 +10,7 @@ import ParticlesBackground from "../components/ParticlesBackground";
 import authHeader from "../services/auth-header";
 import QuestionService from "../services/question.service"
 import FormLabel from "@material-ui/core/FormLabel";
+import {useNavigate} from "react-router-dom";
 
 
 export default class AddQuestion extends Component {
@@ -69,129 +70,138 @@ export default class AddQuestion extends Component {
         );
   };
 
-  render() {
-    return (
-        <div>
-          <Header/>
-          <br/>
-          <ParticlesBackground/>
-          <div className="container">
-            <Container maxWidth="sm" fixed>
-              <Box sx={{bgcolor: "#cfe8fc", borderRadius: 15}}>
-                <FormLabel></FormLabel>
-                <br/>
-                <form onSubmit={this.handleSubmit}>
-                  <Grid
-                      container
-                      alignItems="center"
-                      justifyContent="center"
-                      direction="column"
-                  >
-                    <Grid item>
-                      <TextField
-                          id="question-input"
-                          name="type"
-                          label="Type(0:FT,1:SC,2:MC): "
-                          type="text"
-                          value={this.type}
-                          onChange={this.onInputChange}
-                          required
-                      />
-                    </Grid>
-                    <br/>
-                    <Grid item>
-                      <TextField
-                          id="type-input"
-                          name="questionBody"
-                          label="Question: "
-                          type="text"
-                          value={this.questionBody}
-                          onChange={this.onInputChange}
-                          required
-                      />
-                    </Grid>
-                    <br/>
-                    <Grid item>
-                      <TextField
-                          id="answer-input"
-                          name="possibleAnswer1"
-                          label="Possible answer: "
-                          type="text"
-                          value={this.possibleAnswer1}
-                          onChange={this.onInputChange}
-                      />
-                    </Grid>
-                    <br/>
-                    <Grid item>
-                      <TextField
-                          id="answer-input"
-                          name="possibleAnswer2"
-                          label="Possible answer: "
-                          type="text"
-                          value={this.possibleAnswer2}
-                          onChange={this.onInputChange}
-                      />
-                    </Grid>
-                    <br/>
-                    <Grid item>
-                      <TextField
-                          id="answer-input"
-                          name="possibleAnswer3"
-                          label="Possible answer: "
-                          type="text"
-                          value={this.possibleAnswer3}
-                          onChange={this.onInputChange}
-                      />
-                    </Grid>
-                    <br/>
-                    <Grid item>
-                      <TextField
-                          id="answer-input"
-                          name="possibleAnswer4"
-                          label="Possible answer: "
-                          type="text"
-                          value={this.possibleAnswer4}
-                          onChange={this.onInputChange}
-                      />
-                    </Grid>
-                    <br/>
-                    <Button variant="contained" color="primary" type="submit">
-                      Add
-                    </Button>
-                  </Grid>
-                  <br/>
-                </form>
-              </Box>
-            </Container>
-          </div>
-          <div>
-            <Box
-                m={1}
-                display="flex"
-                justifyContent="flex-end"
-                alignItems="flex-end"
-            >
-              <Button
-                  style={{
-                    weight: 200,
-                    borderRadius: 35,
-                    padding: "18px 32px",
-                    fontSize: "18px",
-                    color: "white",
-                    borderWidth: 4,
-                  }}
-                  variant="outlined"
-                  color="primary"
-                  sx={{height: 40}}
-                 // onClick={() => navigate(-1)}
+
+render() {
+return (
+    <div>
+      <Header/>
+      <br/>
+      <ParticlesBackground/>
+      <div className="container">
+        <Container maxWidth="sm" fixed>
+          <Box sx={{bgcolor: "#cfe8fc", borderRadius: 15}}>
+            <FormLabel></FormLabel>
+            <br/>
+            <form onSubmit={this.handleSubmit}>
+              <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="center"
+                  direction="column"
               >
-                Go back
-              </Button>
-            </Box>
-          </div>
-          <Footer/>
-        </div>
-    );
-  }
+                <Grid item>
+                  <TextField
+                      id="question-input"
+                      name="type"
+                      label="Type(0:FT,1:SC,2:MC): "
+                      type="text"
+                      value={this.type}
+                      onChange={this.onInputChange}
+                      required
+                  />
+                </Grid>
+                <br/>
+                <Grid item>
+                  <TextField
+                      id="type-input"
+                      name="questionBody"
+                      label="Question: "
+                      type="text"
+                      value={this.questionBody}
+                      onChange={this.onInputChange}
+                      required
+                  />
+                </Grid>
+                <br/>
+                <Grid item>
+                  <TextField
+                      id="answer-input"
+                      name="possibleAnswer1"
+                      label="Possible answer: "
+                      type="text"
+                      value={this.possibleAnswer1}
+                      onChange={this.onInputChange}
+                  />
+                </Grid>
+                <br/>
+                <Grid item>
+                  <TextField
+                      id="answer-input"
+                      name="possibleAnswer2"
+                      label="Possible answer: "
+                      type="text"
+                      value={this.possibleAnswer2}
+                      onChange={this.onInputChange}
+                  />
+                </Grid>
+                <br/>
+                <Grid item>
+                  <TextField
+                      id="answer-input"
+                      name="possibleAnswer3"
+                      label="Possible answer: "
+                      type="text"
+                      value={this.possibleAnswer3}
+                      onChange={this.onInputChange}
+                  />
+                </Grid>
+                <br/>
+                <Grid item>
+                  <TextField
+                      id="answer-input"
+                      name="possibleAnswer4"
+                      label="Possible answer: "
+                      type="text"
+                      value={this.possibleAnswer4}
+                      onChange={this.onInputChange}
+                  />
+                </Grid>
+                <br/>
+                <Button style={{
+                  borderRadius: 35,
+                  padding: "18px 36px",
+                  fontSize: "18px",
+                  color: "black",
+                  borderWidth: 4,
+                }}
+                        variant="outlined"
+                        sx={{backgroundColor: 'white',  height: 40}} type="submit">
+                  Add
+                </Button>
+              </Grid>
+              <br/>
+            </form>
+          </Box>
+        </Container>
+      </div>
+      <div>
+        <Box
+            m={1}
+            display="flex"
+            justifyContent="flex-end"
+            alignItems="flex-end"
+        >
+          <Button
+              style={{
+                borderRadius: 35,
+                padding: "18px 36px",
+                fontSize: "18px",
+                color: "black",
+                borderWidth: 4,
+              }}
+              variant="outlined"
+              sx={{backgroundColor: 'white',  height: 40}}
+             //onClick={}
+          >
+            Go back
+          </Button>
+        </Box>
+      </div>
+      <Box sx={{ mt: 6, mb: 0}}>
+        <Footer />
+      </Box>
+    </div>
+);
+}
 }
 
