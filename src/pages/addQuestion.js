@@ -78,7 +78,7 @@ export default class AddQuestion extends Component {
           <div className="container">
             <Container maxWidth="sm" fixed>
               <Box sx={{bgcolor: "#cfe8fc", borderRadius: 15}}>
-                <FormLabel>ADD QUESTION</FormLabel>
+                <FormLabel></FormLabel>
                 <br/>
                 <form onSubmit={this.handleSubmit}>
                   <Grid

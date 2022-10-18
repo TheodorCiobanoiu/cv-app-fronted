@@ -21,13 +21,21 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
 
-function AddRecommendation(){const defaultValues = {
-  name: "",
-  date: "10/04/2022",
-  gender: "",
-  os: "",
-  favoriteNumber: 0,
-};
+function AddRecommendation(){
+  const defaultValues = {
+  userId: "1",
+  candidateFirstName: "Andrei",
+  candidateLastName: "Vulpe",
+  candidateEmail: "andreivulpe@gmail.com",
+  candidatePhoneNumber: "0733333",
+  progressStatus: "Not_Reviewed",
+  answers:
+  [{
+    answerBody: "",
+    questionId:"",
+    recommendationId:""
+  }]
+  };
   const [questions, setQuestions] = useState(null);
 
   const fetchData = () => {
@@ -59,10 +67,10 @@ function AddRecommendation(){const defaultValues = {
   };
 
   const [value, setValue] = React.useState();
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setValue({[event.target.name]: event.target.value})
-  };
+  //
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   this.setValue({[event.target.name]: event.target.value})
+  // };
   const navigate = useNavigate();
 
   return (
@@ -82,13 +90,46 @@ function AddRecommendation(){const defaultValues = {
                 direction="column"
               >
                 <Grid item>
-                  <InputLabel>Name:</InputLabel>
+                  <InputLabel>First Name: </InputLabel>
                   <TextField
                     id="name-input"
-                    name="name"
+                    name="candidateFirstName"
                     type="text"
-                    value={formValues.name}
+                    value={formValues.candidateFirstName}
                     onChange={handleInputChange}
+                  />
+                </Grid>
+                <br />
+                <Grid item>
+                  <InputLabel>Last Name:</InputLabel>
+                  <TextField
+                      id="name-input"
+                      name="candidateLastName"
+                      type="text"
+                      value={formValues.candidateLastName}
+                      onChange={handleInputChange}
+                  />
+                </Grid>
+                <br />
+                <Grid item>
+                  <InputLabel>Email:</InputLabel>
+                  <TextField
+                      id="name-input"
+                      name="candidateEmail"
+                      type="text"
+                      value={formValues.candidateEmail}
+                      onChange={handleInputChange}
+                  />
+                </Grid>
+                <br />
+                <Grid item>
+                  <InputLabel>Phone Number:</InputLabel>
+                  <TextField
+                      id="name-input"
+                      name="candidatePhoneNumber"
+                      type="text"
+                      value={formValues.candidatePhoneNumber}
+                      onChange={handleInputChange}
                   />
                 </Grid>
                 <br />
@@ -110,7 +151,7 @@ function AddRecommendation(){const defaultValues = {
                               <Card sx={{ maxWidth: 400}} >
                               <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
-                                {question.questionBody}{question.type}
+                                {question.questionBody}
                                 </Typography>
                                 {(question.type === "Free_Text" ) &&
                                     <Box
@@ -125,7 +166,7 @@ function AddRecommendation(){const defaultValues = {
                                             id="filled-multiline-flexible"
                                             label="Write your answer below"
                                             value={value}
-                                            onChange={handleChange}
+                                            onChange={handleInputChange}
                                             variant="filled"
                                         />
                                     </Box>}
@@ -136,7 +177,7 @@ function AddRecommendation(){const defaultValues = {
                                         label="Select"
                                         //value={currency}
                                         // Vespi: aici la value CRED ca trebuie sa faca legatura cu answer(gen sa fie answerBody)
-                                        onChange={handleChange}
+                                        onChange={handleInputChange}
                                         variant="filled"
                                     >
                                       {question.possibleAnswer1 &&
@@ -167,7 +208,7 @@ function AddRecommendation(){const defaultValues = {
                                   control={
                                   <Checkbox
                                   checked={value}
-                                   onChange={handleChange}
+                                   onChange={handleInputChange}
                                   inputProps={{ 'possibleAnswer1': question.possibleAnswer1 }}
                                   value={question.possibleAnswer1}
                                   />}
@@ -177,7 +218,7 @@ function AddRecommendation(){const defaultValues = {
                                   control={
                                   <Checkbox
                                       checked={value}
-                                      onChange={handleChange}
+                                      onChange={handleInputChange}
                                   inputProps={{ 'possibleAnswer2': question.possibleAnswer2 }}
                                   value={question.possibleAnswer2}
                                   />}
@@ -187,7 +228,7 @@ function AddRecommendation(){const defaultValues = {
                                   control={
                                   <Checkbox
                                       checked={value}
-                                      onChange={handleChange}
+                                      onChange={handleInputChange}
                                   inputProps={{ 'possibleAnswer3': question.possibleAnswer1 }}
                                   value={question.possibleAnswer1}
                                   />}
@@ -197,7 +238,7 @@ function AddRecommendation(){const defaultValues = {
                                   control={
                                   <Checkbox
                                   checked={value}
-                                  onChange={handleChange}
+                                  onChange={handleInputChange}
                                   inputProps={{ 'possibleAnswer1': question.possibleAnswer1 }}
                                   value={question.possibleAnswer1}
                                   />}

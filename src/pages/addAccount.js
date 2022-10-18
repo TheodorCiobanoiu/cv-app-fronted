@@ -49,6 +49,7 @@ const navigate = useNavigate();
 return (
     <div>
         <Header />
+        <ParticlesBackground/>
         <br />
         <div>
             <Container maxWidth="sm" fixed>

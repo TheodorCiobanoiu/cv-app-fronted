@@ -7,8 +7,8 @@ function Copyright(props) {
       variant="body2"
       color="white"
       align="center"
-      position="fixed"
-      bottom="0"
+      position="absolute"
+      bottom='0'
       width="100%"
       bgcolor="black"
       {...props}

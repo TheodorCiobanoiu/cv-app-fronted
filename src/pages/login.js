@@ -36,6 +36,8 @@ function Copyright(props) {
 
 const theme = createTheme();
 
+
+
 class Login extends Component {
 
     constructor(props) {
@@ -103,8 +105,8 @@ class Login extends Component {
     };
 
     render() {
+        AuthService.logout();
         return (
-
             <ThemeProvider theme={
                 theme
             }
