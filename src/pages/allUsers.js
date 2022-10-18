@@ -84,19 +84,13 @@ export default function StatusRecommendations() {
         },
     ];
 
-    const getData = () => {
-        AdminService.getAllUsers().then((response) => {
+    const getData = async () => {
+        await AdminService.getAllUsers().then((response) => {
             const allData = response.data;
             console.log("Inside getData(): allData variable: ")
-            console.log(allData);
             setData(allData);
-            // users = allData.slice();
-            // console.log(typeof users);
-            // users.forEach((user) => {
-            //     const newRole = user.roles[0].name;
-            //     user.role = newRole;
-            // });
-            // console.log(users);
+            console.log(data);
+
 
         }).catch(error => console.error(error));
     };

@@ -142,6 +142,7 @@ import {GridColDef} from "@mui/x-data-grid";
 import {GridCellValue} from "@mui/x-data-grid";
 
 import RecommendationService from "../services/recommendation.service";
+import UsersService from "../services/users.service";
 
 
 const useStyles = makeStyles(() => ({
@@ -161,28 +162,18 @@ const columns = [
 ]
 
 export default function StatusRecommendations() {
-    let [spage, setsPage] = useState(1);
-    const [data, setData] = useState([]);
-    console.log("INSIDE ALL USERS COMPONENTS");
-    var users = [];
+
+    let [recommendation, setRecommendation] = useState([]);
     const columns: GridColDef[] = [
-        {field: 'userID', headerName: 'ID'},
-        {field: 'firstName', headerName: 'First Name'},
-        {field: 'lastName', headerName: 'Last Name'},
-        // {
-        //     field: 'roles',
-        //     headerName: 'Role',
-        //     width: 180,
-        //     renderCell: params => (
-        //         <ul className="flex" >
-        //             {params.value.map((role, index) => (
-        //                 <li key={index}>{role.name}</li>
-        //             ))}
-        //         </ul>
-        //     ),
-        //     type: 'string'},
-        // {field: 'username', headerName: 'Username', width: 300},
-        {field: 'email', headerName: 'Email', width: 300},
+        {
+            field: 'userFullName',
+            headerName: 'Employee Name',
+            width:180
+        },
+        {field: 'candidateFirstName', headerName: 'First Name'},
+        {field: 'candidateLastName', headerName: 'Last Name'},
+        {field: 'candidateEmail', headerName: 'Email', width: 300},
+        {field: 'progressStatus', headerName:'Status', width:180},
         {
             field: "action",
             headerName: "Action",
@@ -209,35 +200,6 @@ export default function StatusRecommendations() {
         },
     ];
 
-    // const getData = () => {
-    //     RecommendationService.getAllRecommendations().then((response) => {
-    //         const allData = response.data;
-    //         console.log("Inside getData(): allData variable: ")
-    //         console.log(allData);
-    //         setData(allData);
-    //         // users = allData.slice();
-    //         // console.log(typeof users);
-    //         // users.forEach((user) => {
-    //         //     const newRole = user.roles[0].name;
-    //         //     user.role = newRole;
-    //         // });
-    //         // console.log(users);
-    //
-    //     }).catch(error => console.error(error));
-    // };
-    // useEffect(() => {
-    //     getData();
-    //     console.log("DATA OBJECT: ");
-    //     console.log(data);
-    // }, []);
-
-    const PER_PAGE = 10;
-
-    let [page, setPage] = useState(1);
-    let [recommendation, setRecommendation] = useState();
-
-
-
     const getData = () => {
         RecommendationService.getAllRecommendations().then((response) => {
             const data = response.data;
@@ -253,13 +215,6 @@ export default function StatusRecommendations() {
         console.log(recommendation);
     },[]);
 
-    const count = Math.ceil(data.length / PER_PAGE);
-    const _DATA = usePagination(data, PER_PAGE);
-
-    const handleChange = (e, p) => {
-        setsPage(p);
-        _DATA.jump(p);
-    };
 
     const classes = useStyles();
     return (
@@ -271,10 +226,10 @@ export default function StatusRecommendations() {
             <div style={{height: 700, width: '100%'}}>
                 <DataGrid
                     style={{color:"black", backgroundColor:"white"}}
-                    rows={data}
+                    rows={recommendation}
                     columns={columns}
                     pageSize={5}
-                    getRowId={(row) => row.userID}
+                    getRowId={(row) => row.id}
                     rowsPerPageOptions={[5]}
                     checkboxSelection
                     disableSelectionOnClick
