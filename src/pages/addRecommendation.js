@@ -30,13 +30,10 @@ function AddRecommendation() {
     progressStatus: "Not_Reviewed",
     answers: []
   };
-  let answer: {
-    question:{},
-    answerBody:""
-  }
+
 
   const [questions, setQuestions] = useState(null);
-
+  let answers = [];
   const fetchData = () => {
     return axios
       .get("http://localhost:8082/question/all", { headers: authHeader() })
@@ -51,7 +48,8 @@ function AddRecommendation() {
   const handleInputChange = (e) => {
     console.log("Current target: " + e.currentTarget.value);
     const { name, value } = e.target;
-    console.log(e);
+    console.log("value: " + value);
+    console.log(value);
     switch(e.currentTarget.id){
       case 'name-input-first':
         setFormValues({
@@ -73,14 +71,12 @@ function AddRecommendation() {
           candidatePhoneNumber: value
         });
         break;
-      // default:
-      //     answer.answerBody = value
-      //   break;
+      default:
+          const answer2 = {};
+          answer2.answerBody = value;
+          answer2.question = questions.find(({id}) => id === e.target.name);
+        break;
     }
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
   };
   /*const handleSliderChange = (name) => (e, value) => {
     setFormValues({
@@ -250,6 +246,7 @@ function AddRecommendation() {
                                   id="filled-multiline-flexible"
                                   label="Write your answer below"
                                   value={value}
+                                  name={question.id}
                                   onChange={handleInputChange}
                                   variant="filled"
                                 />
@@ -265,6 +262,7 @@ function AddRecommendation() {
                                 onChange={handleInputChange}
                                 variant="filled"
                                 fullWidth={true}
+                                name={question.id}
                               >
                                 {question.possibleAnswer1 && (
                                   <MenuItem value={question.possibleAnswer1}>
@@ -297,6 +295,7 @@ function AddRecommendation() {
                                     <Checkbox
                                       checked={value}
                                       onChange={handleInputChange}
+                                      name={question.id}
                                       inputProps={{
                                         possibleAnswer1:
                                           question.possibleAnswer1,
@@ -310,6 +309,7 @@ function AddRecommendation() {
                                   control={
                                     <Checkbox
                                       checked={value}
+                                      name={question.id}
                                       onChange={handleInputChange}
                                       inputProps={{
                                         possibleAnswer2:
@@ -324,6 +324,7 @@ function AddRecommendation() {
                                   control={
                                     <Checkbox
                                       checked={value}
+                                      name={question.id}
                                       onChange={handleInputChange}
                                       inputProps={{
                                         possibleAnswer3:
@@ -338,6 +339,7 @@ function AddRecommendation() {
                                   control={
                                     <Checkbox
                                       checked={value}
+                                      name={question.id}
                                       onChange={handleInputChange}
                                       inputProps={{
                                         possibleAnswer1:

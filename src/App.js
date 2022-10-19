@@ -13,6 +13,7 @@ import Logout from "./pages/logout";
 import Main from "./pages/main";
 import AddQuestion from "./pages/addQuestion";
 import AllUsers from "./pages/allUsers"
+import YourRecommendations from "./pages/yourRecommendations";
 
 function App() {
 
@@ -33,7 +34,7 @@ function App() {
         <Route path="/admin" element={<AdminControl />}></Route>
         <Route
           path="/yourRecommendation"
-          element={<StatusRecommendation />}
+          element={<YourRecommendations />}
         ></Route>
         <Route path="/addAccount" element={<AddAccount />}></Route>
         <Route path="/deleteAccount" element={<DeleteAccount />}></Route>

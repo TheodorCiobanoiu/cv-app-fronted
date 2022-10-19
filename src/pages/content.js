@@ -42,7 +42,7 @@ const Content = () => {
               sx={{backgroundColor: 'white' }}
               href="/yourRecommendation"
             >
-              See status for recommendations
+              See your recommendations
             </Button>
             {(role === "hr" || role === "admin") && (
               <Button
