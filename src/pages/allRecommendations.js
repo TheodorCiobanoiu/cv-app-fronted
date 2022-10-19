@@ -119,7 +119,7 @@ import Stack from '@mui/material/Stack';
 import Footer from "./footer";
 import Header from "./header";
 import ParticlesBackground from "../components/ParticlesBackground";
-import {Divider, List, ListItem, PaginationItem} from "@mui/material";
+import {Divider, List, ListItem, Modal, PaginationItem} from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
@@ -153,6 +153,20 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+};
+
 
 const columns = [
     {field: 'firstName', headerName: 'ID'},
@@ -164,16 +178,22 @@ const columns = [
 export default function StatusRecommendations() {
 
     let [recommendation, setRecommendation] = useState([]);
+    let [open, setOpen] = useState(false);
+    let [currentRecommendation, setCurrentRecommendation] = useState({});
+
+    const handleClose = () => {
+        setOpen(false);
+    }
     const columns: GridColDef[] = [
-        {
-            field: 'userFullName',
-            headerName: 'Employee Name',
-            width:180
-        },
+        {field: 'id', headerName: 'Id', width: 50},
         {field: 'candidateFirstName', headerName: 'First Name'},
         {field: 'candidateLastName', headerName: 'Last Name'},
         {field: 'candidateEmail', headerName: 'Email', width: 300},
-        {field: 'progressStatus', headerName:'Status', width:180},
+        {field: 'progressStatus', headerName: 'Status', width: 180}, {
+            field: 'userFullName',
+            headerName: 'Employee Name',
+            width: 180
+        },
         {
             field: "action",
             headerName: "Action",
@@ -191,8 +211,10 @@ export default function StatusRecommendations() {
                         .forEach(
                             (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
                         );
-
-                    return alert(JSON.stringify(thisRow, null, 4));
+                    console.log("currentRecommendation: ");
+                    setCurrentRecommendation(recommendation.find(element => element.id === thisRow.id));
+                    console.log(currentRecommendation);
+                    setOpen(true);
                 };
 
                 return <Button onClick={onClick}>Click</Button>;
@@ -209,11 +231,11 @@ export default function StatusRecommendations() {
         }).catch(error => console.log(error));
     };
 
-    useEffect(() =>{
+    useEffect(() => {
         getData();
         console.log("Recommendation objects:");
         console.log(recommendation);
-    },[]);
+    }, []);
 
 
     const classes = useStyles();
@@ -225,7 +247,7 @@ export default function StatusRecommendations() {
 
             <div style={{height: 700, width: '100%'}}>
                 <DataGrid
-                    style={{color:"black", backgroundColor:"white"}}
+                    style={{color: "black", backgroundColor: "white"}}
                     rows={recommendation}
                     columns={columns}
                     pageSize={5}
@@ -236,6 +258,19 @@ export default function StatusRecommendations() {
                     experimentalFeatures={{newEditingApi: true}}
 
                 />
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="parent-modal-title"
+                    aria-describedby="parent-modal-description"
+                >
+                    <Box sx={{...style, width: '80%'}}>
+                        <h2 id="parent-modal-title">Recommendation #{currentRecommendation.id}: {currentRecommendation.candidateFirstName} {currentRecommendation.candidateLastName} </h2>
+                        <p id="parent-modal-description">
+
+                        </p>
+                    </Box>
+                </Modal>
             </div>
 
             {/*  <Pagination
@@ -291,8 +326,8 @@ export default function StatusRecommendations() {
                 onChange={handleChange}
             />*/}
             {/*<Footer />*/}
-            <Box sx={{ mt: 0, mb: 0}}>
-                <Footer />
+            <Box sx={{mt: 0, mb: 0}}>
+                <Footer/>
             </Box>
         </Box>
     );

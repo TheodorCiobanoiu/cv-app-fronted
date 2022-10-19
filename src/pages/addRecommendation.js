@@ -22,20 +22,19 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 
 function AddRecommendation() {
   const defaultValues = {
-    userId: "1",
-    candidateFirstName: "Andrei",
-    candidateLastName: "Vulpe",
-    candidateEmail: "andreivulpe@gmail.com",
-    candidatePhoneNumber: "0733333",
+    userId: "",
+    candidateFirstName: "",
+    candidateLastName: "",
+    candidateEmail: "",
+    candidatePhoneNumber: "",
     progressStatus: "Not_Reviewed",
-    answers: [
-      {
-        answerBody: "",
-        questionId: "",
-        recommendationId: "",
-      },
-    ],
+    answers: []
   };
+  let answer: {
+    question:{},
+    answerBody:""
+  }
+
   const [questions, setQuestions] = useState(null);
 
   const fetchData = () => {
@@ -50,7 +49,34 @@ function AddRecommendation() {
 
   const [formValues, setFormValues] = useState(defaultValues);
   const handleInputChange = (e) => {
+    console.log("Current target: " + e.currentTarget.value);
     const { name, value } = e.target;
+    console.log(e);
+    switch(e.currentTarget.id){
+      case 'name-input-first':
+        setFormValues({
+          candidateFirstName: value
+        });
+        break;
+      case 'name-input-last':
+        setFormValues({
+          candidateLastName: value
+        });
+        break;
+      case 'email-input':
+        setFormValues({
+          candidateEmail: value
+        });
+        break;
+      case 'phone-input':
+        setFormValues({
+          candidatePhoneNumber: value
+        });
+        break;
+      // default:
+      //     answer.answerBody = value
+      //   break;
+    }
     setFormValues({
       ...formValues,
       [name]: value,
@@ -121,22 +147,27 @@ function AddRecommendation() {
     <div>
       <Header />
       <br />
-      <ParticlesBackground />
+      {/*<ParticlesBackground />*/}
       <div>
-        <Container maxWidth="sm" fixed>
-          <Box sx={{ bgcolor: "#403bbc" }}>
+        <Container maxWidth="sm" fixed sx={{width: '90%', color: "white", boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'}}>
+          <Box sx={{ bgcolor: "#ffffff", borderRadius: 10 }}>
             <form onSubmit={handleSubmit}>
-              <FormLabel>Recommendation Form</FormLabel>
               <Grid
                 container
                 alignItems="center"
                 justifyContent="center"
                 direction="column"
               >
+                <FormLabel style={{
+                  margin: "10px",
+
+                }}>
+
+                  Recommendation Form</FormLabel>
                 <Grid item>
                   <InputLabel>First Name: </InputLabel>
                   <TextField
-                    id="name-input"
+                    id="name-input-first"
                     name="candidateFirstName"
                     type="text"
                     value={formValues.candidateFirstName}
@@ -147,7 +178,7 @@ function AddRecommendation() {
                 <Grid item>
                   <InputLabel>Last Name:</InputLabel>
                   <TextField
-                    id="name-input"
+                    id="name-input-last"
                     name="candidateLastName"
                     type="text"
                     value={formValues.candidateLastName}
@@ -158,7 +189,7 @@ function AddRecommendation() {
                 <Grid item>
                   <InputLabel>Email:</InputLabel>
                   <TextField
-                    id="name-input"
+                    id="email-input"
                     name="candidateEmail"
                     type="text"
                     value={formValues.candidateEmail}
@@ -169,7 +200,7 @@ function AddRecommendation() {
                 <Grid item>
                   <InputLabel>Phone Number:</InputLabel>
                   <TextField
-                    id="name-input"
+                    id="phone-input"
                     name="candidatePhoneNumber"
                     type="text"
                     value={formValues.candidatePhoneNumber}
@@ -178,14 +209,14 @@ function AddRecommendation() {
                 </Grid>
                 <br />
                 <Grid item>
-                  <InputLabel>Date:</InputLabel>
-                  <TextField
-                    id="date-input"
-                    name="date"
-                    type="date"
-                    value={formValues.date}
-                    onChange={handleInputChange}
-                  />
+                  {/*<InputLabel>Date:</InputLabel>*/}
+                  {/*<TextField*/}
+                  {/*  id="date-input"*/}
+                  {/*  name="date"*/}
+                  {/*  type="date"*/}
+                  {/*  value={formValues.date}*/}
+                  {/*  onChange={handleInputChange}*/}
+                  {/*/>*/}
                 </Grid>
                 <br />
 
@@ -193,7 +224,7 @@ function AddRecommendation() {
                   {questions &&
                     questions.length &&
                     questions.map((question, key) => (
-                      <Grid item key={question.id}>
+                      <Grid item key={question.id} >
                         <Card sx={{ maxWidth: 400 }}>
                           <CardContent>
                             <Typography
@@ -233,6 +264,7 @@ function AddRecommendation() {
                                 // Vespi: aici la value CRED ca trebuie sa faca legatura cu answer(gen sa fie answerBody)
                                 onChange={handleInputChange}
                                 variant="filled"
+                                fullWidth={true}
                               >
                                 {question.possibleAnswer1 && (
                                   <MenuItem value={question.possibleAnswer1}>

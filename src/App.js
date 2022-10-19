@@ -28,7 +28,7 @@ function App() {
         ></Route>
         <Route
           path="/viewRecommendations"
-          element={<AllRecommendation />}
+          element={<AllRecommendation test="This is a test for props"/>}
         ></Route>
         <Route path="/admin" element={<AdminControl />}></Route>
         <Route
