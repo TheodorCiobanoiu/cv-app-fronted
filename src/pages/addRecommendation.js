@@ -28,9 +28,8 @@ function AddRecommendation() {
     candidateEmail: "",
     candidatePhoneNumber: "",
     progressStatus: "Not_Reviewed",
-    answers: []
+    answers: [],
   };
-
 
   const [questions, setQuestions] = useState(null);
   let answers = [];
@@ -50,31 +49,31 @@ function AddRecommendation() {
     const { name, value } = e.target;
     console.log("value: " + value);
     console.log(value);
-    switch(e.currentTarget.id){
-      case 'name-input-first':
+    switch (e.currentTarget.id) {
+      case "name-input-first":
         setFormValues({
-          candidateFirstName: value
+          candidateFirstName: value,
         });
         break;
-      case 'name-input-last':
+      case "name-input-last":
         setFormValues({
-          candidateLastName: value
+          candidateLastName: value,
         });
         break;
-      case 'email-input':
+      case "email-input":
         setFormValues({
-          candidateEmail: value
+          candidateEmail: value,
         });
         break;
-      case 'phone-input':
+      case "phone-input":
         setFormValues({
-          candidatePhoneNumber: value
+          candidatePhoneNumber: value,
         });
         break;
       default:
-          const answer2 = {};
-          answer2.answerBody = value;
-          answer2.question = questions.find(({id}) => id === e.target.name);
+        const answer2 = {};
+        answer2.answerBody = value;
+        answer2.question = questions.find(({ id }) => id === e.target.name);
         break;
     }
   };
@@ -143,9 +142,18 @@ function AddRecommendation() {
     <div>
       <Header />
       <br />
-      {/*<ParticlesBackground />*/}
+      <ParticlesBackground />
       <div>
-        <Container maxWidth="sm" fixed sx={{width: '90%', color: "white", boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'}}>
+        <Container
+          maxWidth="sm"
+          fixed
+          sx={{
+            width: "90%",
+            color: "white",
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+            position: "relative",
+          }}
+        >
           <Box sx={{ bgcolor: "#ffffff", borderRadius: 10 }}>
             <form onSubmit={handleSubmit}>
               <Grid
@@ -154,12 +162,13 @@ function AddRecommendation() {
                 justifyContent="center"
                 direction="column"
               >
-                <FormLabel style={{
-                  margin: "10px",
-
-                }}>
-
-                  Recommendation Form</FormLabel>
+                <FormLabel
+                  style={{
+                    margin: "10px",
+                  }}
+                >
+                  Recommendation Form
+                </FormLabel>
                 <Grid item>
                   <InputLabel>First Name: </InputLabel>
                   <TextField
@@ -220,7 +229,7 @@ function AddRecommendation() {
                   {questions &&
                     questions.length &&
                     questions.map((question, key) => (
-                      <Grid item key={question.id} >
+                      <Grid item key={question.id}>
                         <Card sx={{ maxWidth: 400 }}>
                           <CardContent>
                             <Typography

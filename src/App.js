@@ -12,15 +12,14 @@ import Profile from "./pages/profile";
 import Logout from "./pages/logout";
 import Main from "./pages/main";
 import AddQuestion from "./pages/addQuestion";
-import AllUsers from "./pages/allUsers"
+import AllUsers from "./pages/allUsers";
 import YourRecommendations from "./pages/yourRecommendations";
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<Main />}></Route>
+        <Route path="/" element={<Main />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/content" element={<Content />}></Route>
         <Route
@@ -29,7 +28,7 @@ function App() {
         ></Route>
         <Route
           path="/viewRecommendations"
-          element={<AllRecommendation test="This is a test for props"/>}
+          element={<AllRecommendation test="This is a test for props" />}
         ></Route>
         <Route path="/admin" element={<AdminControl />}></Route>
         <Route
@@ -42,7 +41,6 @@ function App() {
         <Route path="/addQuestion" element={<AddQuestion />}></Route>
         <Route path="/allUsers" element={<AllUsers />}></Route>
         <Route path="/logout" element={<Logout />}></Route>
-
       </Routes>
     </BrowserRouter>
   );

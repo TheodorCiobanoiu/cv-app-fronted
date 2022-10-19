@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import ParticlesBackground from "./components/ParticlesBackground";
+import ParticlesBackground from "../components/ParticlesBackground";
 import Footer from "./footer";
 const theme = createTheme();
 
@@ -23,9 +23,9 @@ export default function SignOut() {
       <Container component="main" maxWidth="xs" sx={{ mt: 25 }}>
         <CssBaseline />
 
-        <Typography component="h1" variant="h5" color="white" sx={{ mb: 5 }}>
-          Welcome to CV Resume Platform!
-            Recommend your friends, review recommendation, gestionate platform and so much more!
+        <Typography component="h1" variant="h5" color="black" sx={{ mb: 5 }}>
+          Welcome to CV Resume Platform! Recommend your friends, review
+          recommendation, gestionate platform and so much more!
         </Typography>
         <br />
         <Button
@@ -33,8 +33,9 @@ export default function SignOut() {
             borderRadius: 35,
             padding: "18px 36px",
             fontSize: "18px",
-            color: "white",
+            color: "blue",
             borderWidth: 4,
+            position: "relative",
           }}
           type="submit"
           fullWidth
