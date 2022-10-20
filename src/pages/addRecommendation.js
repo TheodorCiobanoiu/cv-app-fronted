@@ -23,6 +23,13 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import AuthService from "../services/auth.service";
 import RecommendationService from "../services/recommendation.service";
+import MailService from "../services/mail.service";
+
+const user = AuthService.getCurrentUser();
+
+const MAIL_RECEIVER = "cvtemplateapp@gmail.com";
+const MAIL_SUBJECT = "A new recommendation has been submitted";
+const MAIL_TEXT = "There is a new recommendation submitted by " + user.username + ". Go check it out!";
 
 function AddRecommendation() {
     const defaultValues = {
@@ -65,10 +72,6 @@ function AddRecommendation() {
     const [formValues, setFormValues] = useState(defaultValues);
     const [myResponse, setMyResponse] = useState({});
     const handleSubmit = async (values) => {
-        console.log("Values object: ");
-        console.log(values);
-        console.log(values);
-
         const allAnswers = [];
         questions.forEach((question) => {
             console.log(question);
@@ -101,42 +104,43 @@ function AddRecommendation() {
         const formData = new FormData();
         // Update the formData object
         await formData.append("file", state.selectedFile, state.selectedFile.name);
-
         let axiosFileResponse = {}
         // Details of the uploaded file
         console.log(state.selectedFile);
         const user = JSON.parse(localStorage.getItem("user"));
         let recommendationFileId = 0;
-        await axios.post("http://localhost:8082/file/uploadFile", formData, {
+         axios.post("http://localhost:8082/file/uploadFile", formData, {
             headers: {
                 Authorization: "Bearer " + user.token,
                 "Content-Type": "multipart/form-data",
             },
         }).then(async (response) => {
-            await setMyResponse(response.data);
+
             console.log("AXIOS FILE RESPONSE");
-            console.log(myResponse);
-            recommendationFileId = myResponse.fileId;
+            console.log(response.data);
+            recommendationFileId = response.data.fileId;
+             console.log(recommendationFileId);
+             const formVal = {
+                     userId: user.id,
+                     candidateFirstName: values.candidateFirstName,
+                     candidateLastName: values.candidateLastName,
+                     candidateEmail: values.candidateEmail,
+                     candidatePhoneNumber: values.candidatePhoneNumber,
+                     progressStatus: "Not_Reviewed",
+                     cvFileId: recommendationFileId,
+                     answers: allAnswers,
+                 }
 
-        });
-        console.log(recommendationFileId);
-        setFormValues({
-                userId: user.id,
-                candidateFirstName: values.candidateFirstName,
-                candidateLastName: values.candidateLastName,
-                candidateEmail: values.candidateEmail,
-                candidatePhoneNumber: values.candidatePhoneNumber,
-                progressStatus: "Not_Reviewed",
-                cvFileId: recommendationFileId,
-                answers: allAnswers,
-            }
-        );
-        console.log("FINAL FORM VALUES ");
-        console.log(formValues);
+             console.log("FINAL FORM VALUES ");
 
-        await RecommendationService.addRecommendation(formValues).then((response) => {
-            console.log(response);
+
+             await RecommendationService.addRecommendation(formVal).then((response) => {
+                 console.log(response);
+             });
+             MailService.sendMail(MAIL_RECEIVER, MAIL_SUBJECT, MAIL_TEXT);
+            navigate("/content");
         });
+
         // console.log("Event object on handleSubmit")
         // console.log(event);
         // console.log(formValues);
@@ -249,7 +253,7 @@ function AddRecommendation() {
                                                 type="text"
                                                 error={Boolean(props.touched.candidateFirstName && props.errors.candidateFirstName)}
                                                 helperText={
-                                                    <ErrorMessage name="email"/> &&
+                                                    <ErrorMessage name="candidateFirstName"/> &&
                                                     props.touched.candidateFirstName &&
                                                     props.errors.candidateFirstName
                                                 }

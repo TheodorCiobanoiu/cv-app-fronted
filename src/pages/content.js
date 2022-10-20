@@ -5,7 +5,9 @@ import Stack from "@mui/material/Stack";
 import Footer from "./footer";
 import Header from "./header";
 import ParticlesBackground from "../components/ParticlesBackground";
-const role = "admin";
+import AuthService from "../services/auth.service";
+const user = AuthService.getCurrentUser();
+const role =user.roles[0];
 const Content = () => {
   return (
     <div>
@@ -44,7 +46,7 @@ const Content = () => {
             >
               See your recommendations
             </Button>
-            {(role === "hr" || role === "admin") && (
+            {(role === "ROLE_HR" || role === "ROLE_ADMIN") && (
               <Button
                 style={{
                   borderRadius: 35,
@@ -60,7 +62,7 @@ const Content = () => {
                 See all recommendations
               </Button>
             )}
-            {role === "admin" && (
+            {role === "ROLE_ADMIN" && (
               <Button
                 style={{
                   borderRadius: 35,
