@@ -11,6 +11,14 @@ import Footer from "./footer";
 import AuthService from "../services/auth.service";
 import ModalRecommendation from "./modalRecommendation";
 
+const modalStyles = {
+    overflow: 'scroll',
+    height: '100%',
+    display: 'flex',
+    flexDirection:'row'
+};
+
+
 function YourRecommendations() {
 
     const user = AuthService.getCurrentUser();
@@ -107,7 +115,7 @@ function YourRecommendations() {
                     style={{color: "black", backgroundColor: "white"}}
                     rows={recommendation}
                     columns={columns}
-                    pageSize={5}
+                    pageSize={10}
                     getRowId={(row) => row.id}
                     rowsPerPageOptions={[5]}
                     checkboxSelection
@@ -120,15 +128,16 @@ function YourRecommendations() {
                     onClose={handleClose}
                     aria-labelledby="parent-modal-title"
                     aria-describedby="parent-modal-description"
+                    style={modalStyles}
                 >
-                    <Box sx={{...style, width: '80%'}}>
+                    <Box sx={{...style, width: '80%', marginTop:"320px"}}>
                         <h2 id="parent-modal-title">
                             Recommendation #{currentRecommendation.id}:{" "}
                             {currentRecommendation.candidateFirstName}{" "}
                             {currentRecommendation.candidateLastName}{" "}
                         </h2>
                         <div id="parent-modal-description">
-                            <ModalRecommendation recommendation={currentRecommendation} />
+                            <ModalRecommendation recommendation={currentRecommendation} pathName={window.location.pathname}/>
                         </div>
                     </Box>
                 </Modal>
