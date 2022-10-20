@@ -66,7 +66,7 @@ function Header() {
                             WELCOME {userName} &nbsp;&nbsp;
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                                    <Avatar alt="Remy Sharp" src="https://i.imgur.com/Crdz2qO_d.webp?maxwidth=760&fidelity=grand" />
                                 </IconButton>
                             </Tooltip>
                             <Menu
