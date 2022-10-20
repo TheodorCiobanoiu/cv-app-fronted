@@ -56,7 +56,7 @@ const AddAccount = () => {
   return (
     <div>
       <Header />
-      <ParticlesBackground />
+      {/*<ParticlesBackground />*/}
       <br />
       <div>
         <Container

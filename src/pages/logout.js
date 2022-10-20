@@ -9,6 +9,7 @@ import ParticlesBackground from "../components/ParticlesBackground";
 import Footer from "./footer";
 import { useEffect } from "react";
 import AuthService from "../services/auth.service";
+import Box from "@mui/material/Box";
 
 const theme = createTheme();
 
@@ -26,18 +27,20 @@ export default function SignOut() {
   return (
     <ThemeProvider theme={theme}>
       <ParticlesBackground />
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <Typography component="h3" variant="h4" color="black">
+        <Container
+            maxWidth="sm"
+            fixed
+            sx={{
+                width: "90%",
+                color: "white",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                position: "relative",
+                mt:20
+            }}
+        >
+            <Box sx={{bgcolor: "#ffffff", borderRadius: 10}}>
+
+            <Typography component="h3" variant="h3" color="black" align={"center"}>
           Successfully Logged out!
         </Typography>
         <Button
@@ -57,6 +60,7 @@ export default function SignOut() {
         >
           Go back to our main page
         </Button>
+            </Box>
       </Container>
       <Footer />
     </ThemeProvider>

@@ -9,6 +9,7 @@ import {Modal} from "@mui/material";
 import Box from "@mui/material/Box";
 import Footer from "./footer";
 import AuthService from "../services/auth.service";
+import ModalRecommendation from "./modalRecommendation";
 
 function YourRecommendations() {
 
@@ -121,11 +122,14 @@ function YourRecommendations() {
                     aria-describedby="parent-modal-description"
                 >
                     <Box sx={{...style, width: '80%'}}>
-                        <h2 id="parent-modal-title">Recommendation
-                            #{currentRecommendation.id}: {currentRecommendation.candidateFirstName} {currentRecommendation.candidateLastName} </h2>
-                        <p id="parent-modal-description">
-
-                        </p>
+                        <h2 id="parent-modal-title">
+                            Recommendation #{currentRecommendation.id}:{" "}
+                            {currentRecommendation.candidateFirstName}{" "}
+                            {currentRecommendation.candidateLastName}{" "}
+                        </h2>
+                        <div id="parent-modal-description">
+                            <ModalRecommendation recommendation={currentRecommendation} />
+                        </div>
                     </Box>
                 </Modal>
             </div>

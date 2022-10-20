@@ -151,15 +151,27 @@ class Login extends Component {
                                 control={<Checkbox value="remember" color="primary"/>}
                                 label="Remember me"
                             /> */}
+              <br/>
+              <br/>
+
               <Button
                 type="submit"
                 fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                variant="outlined"
+                style={{
+                  borderRadius: 35,
+                  padding: "18px 36px",
+                  fontSize: "18px",
+                  color: "blue",
+                  borderWidth: 4,
+                  position: "relative",
+                }}
                 onClick={this.handleSubmit}
               >
                 Sign In
               </Button>
+              <br/>
+              <br/>
               {/* <Grid container>
                                 <Grid item xs>
                                     <Link href="#" variant="body2">

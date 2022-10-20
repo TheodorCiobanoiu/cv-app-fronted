@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import ParticlesBackground from "../components/ParticlesBackground";
 import Footer from "./footer";
+import Box from "@mui/material/Box";
 const theme = createTheme();
 
 export default function SignOut() {
@@ -20,11 +21,22 @@ export default function SignOut() {
     <ThemeProvider theme={theme}>
       <ParticlesBackground />
 
-      <Container component="main" maxWidth="xs" sx={{ mt: 25 }}>
-        <CssBaseline />
+        <Container
+            maxWidth="sm"
+            fixed
+            sx={{
+                width: "90%",
+                color: "white",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                position: "relative",
+                mt:15
+            }}
+        >
+            <Box sx={{bgcolor: "#ffffff", borderRadius: 10}}>
 
         <Typography component="h1" variant="h5" color="black" sx={{ mb: 5 }}>
-          Welcome to CV Resume Platform! Recommend your friends, review
+          <h2 align={"center"}>Welcome to CV Resume Platform! </h2>
+            <br/>Recommend your friends, review
           recommendation, gestionate platform and so much more!
         </Typography>
         <br />
@@ -45,6 +57,7 @@ export default function SignOut() {
         >
           Login
         </Button>
+            </Box>
       </Container>
       <Footer />
     </ThemeProvider>

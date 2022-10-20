@@ -80,7 +80,7 @@ export default class AddQuestion extends Component {
       <div>
         <Header />
         <br />
-        <ParticlesBackground />
+        {/*<ParticlesBackground />*/}
         <div className="container">
           <Container
             maxWidth="sm"
@@ -107,7 +107,7 @@ export default class AddQuestion extends Component {
                     <TextField
                       id="question-input"
                       name="type"
-                      label="Type(0:FT,1:SC,2:MC): "
+                      label="Type: "
                       type="text"
                       value={this.type}
                       onChange={this.onInputChange}

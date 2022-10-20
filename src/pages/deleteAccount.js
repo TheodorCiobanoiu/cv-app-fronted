@@ -56,7 +56,7 @@ const DeleteAccount = () => {
     <div>
       <Header />
       <br />
-      <ParticlesBackground />
+      {/*<ParticlesBackground />*/}
       <div>
         <Container
           maxWidth="sm"
