@@ -13,6 +13,9 @@ class RecommendationService {
     getRecommendationsById(id){
         return axios.get(API_URL + 'all/' + id, {headers: authHeader()});
     }
+    addRecommendation(formValues){
+        return axios.post(API_URL + 'add',formValues,{headers: authHeader()})
+    }
 }
 
 export default new RecommendationService();

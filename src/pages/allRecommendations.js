@@ -276,6 +276,10 @@ export default function StatusRecommendations() {
         </Modal>
       </div>
 
+      const questionsName = [1, 2, 3]
+
+      questionsName.map(id => id: values[id]
+
       {/*  <Pagination
                 classes={{ ul: classes.ul }}
                 renderItem={(item) => (

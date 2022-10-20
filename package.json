@@ -22,6 +22,7 @@
     "axios": "^1.1.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "formik": "^2.2.9",
     "mdb-react-ui-kit": "^4.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -33,7 +34,8 @@
     "request": "^2.88.2",
     "styled-components": "^5.3.6",
     "tsparticles": "^2.3.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
